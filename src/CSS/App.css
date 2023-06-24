@@ -1,0 +1,11 @@
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 13fr; 
+    gap:0;
+    height:100%;
+}
+.content{
+   display:flex;
+   flex-direction:column;
+   
+}

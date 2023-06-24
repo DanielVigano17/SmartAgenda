@@ -1,0 +1,43 @@
+#Nav{
+    max-width: 9.5rem;
+    width: 100%;
+    border-right: 0.1rem solid #460068;
+    height:100%;
+}
+.container{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:100%;
+
+}
+.container ul{
+    margin-top: 9.9rem;
+    border-top: 1px solid #460068;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:1.8rem;
+}
+.container ul li:not(:first-child){
+   margin-top: 3.9rem;
+
+
+}
+
+.container button{
+    background-color: transparent;
+    max-width: 3.6rem;
+    max-height: 3.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.container button img{
+   max-width: 3.6rem;
+}
