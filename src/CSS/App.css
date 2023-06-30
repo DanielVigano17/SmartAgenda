@@ -7,5 +7,5 @@
 .content{
    display:flex;
    flex-direction:column;
-   
+   padding-bottom:3.6rem;
 }

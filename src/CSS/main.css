@@ -33,9 +33,24 @@ body{
 }
 html{
     font-size: 62.5%;
-    overflow: hidden;
+    overflow-x: hidden;
+
+    scrollbar-width: 3px;          
+    scrollbar-color: $second-color none;   
    
 }
+body::-webkit-scrollbar {
+    width: 0.4rem;               
+  }
+body::-webkit-scrollbar-track {
+    background-color: none;        
+  }
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--cor--btn);    
+    border-radius: 2rem;      
+   
+  }
 
 h3{
     font-style: normal;

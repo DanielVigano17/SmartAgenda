@@ -1,14 +1,12 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useRef} from 'react'
 import styles from './CSS/body.module.css'
 
 function Timer(){
 /*UseState*/ 
-const [isActive, setIsActive] = useState(false)
+const [isActive, setIsActive] = useState(false);
 const [segundos, setSegundos] = useState(1500);
 
-const spans = document.querySelectorAll('.minutes_select')
 
-/*Função Cria Hora*/
 function criaHora(segundos){
     const data = new Date(segundos*1000); 
   
@@ -19,6 +17,20 @@ function criaHora(segundos){
         timeZone: 'GMT'
     })
   }
+
+
+
+function teste(){
+  const audioElement = document.querySelector('#audio')
+    
+ 
+
+    audioElement.play();
+
+
+
+
+}
 
 useEffect(() => {
    
@@ -37,6 +49,8 @@ useEffect(() => {
     
     
 if(segundos === 0){
+  teste()
+  const spans = document.querySelectorAll('.minutes_select')
       setIsActive(!isActive)
       setSegundos(1500)
       spans.forEach(element => {
@@ -47,14 +61,16 @@ if(segundos === 0){
 
 
 const toggle = () => {
-      setIsActive(!isActive)
+      setIsActive(!isActive) 
 }
 
 function select(num,event){
+  const spans = document.querySelectorAll('.minutes_select')
   const selected_span = event.target
   spans.forEach(element => {
     element.classList.remove(styles.selected_timer)
   });
+
   selected_span.classList.add(styles.selected_timer)
   setSegundos(num)
   setIsActive(false)
@@ -73,6 +89,10 @@ function select(num,event){
     
           <h1>{criaHora(segundos)}</h1>
 
+          <audio id='audio'>
+          <source src="alarm-clock.mp3" type="audio/mpeg"></source>
+          </audio>
+    
           <button  className={isActive ? styles.inactive_button : styles.active_button} onClick={toggle}>{isActive ? "PAUSE" : "START"}</button>
         </div>
         

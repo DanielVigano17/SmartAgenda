@@ -18,13 +18,15 @@
     background: rgba(70, 0, 104, 0.24);
     border-radius: 19px;
     margin-right: 2.4rem;
+    padding-inline:3.6rem;
 }
 
 .timer{
     display:flex;
     flex-direction:column;
     align-items:center;
-    width: 69.9rem;
+    max-width: 69.9rem;
+    width:100%;
     height: 51.6rem;
     background: #0E0024;
     border-radius: 19px;
@@ -102,7 +104,8 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    width: 57.6rem;
+    max-width: 57.6rem;
+    width:100%;
     height: 69.6rem;
     background: rgba(70, 0, 104, 0.24);
     border-radius: 1.9rem;
@@ -119,10 +122,27 @@
 .task ul{
     max-width: 100%;
     width: 100%;
+    max-height:47.6rem;
+    height:100%;
     display:flex;
     flex-direction:column;
     align-items: flex-start;
-    padding-left: 3.8rem;
+    padding-inline: 3.8rem;
+
+}
+
+.task ul li{
+    display:flex;
+    margin-bottom: 2.4rem;
+    max-width: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.content_text{
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .task ul li span{
@@ -130,44 +150,34 @@
     font-size: 20px;
     color: #FFFFFF;
     margin-left: 4.6rem;
-}
-.task ul li input[type="checkbox"]{
-    position: relative;
     
 }
-.task ul li input[type=checkbox]:before {
-    content: "";
-    display: block;
+.trash{
+    width: 3.3rem;
+    height: 3.3rem;
+    border-radius: 3px;
+    border: 1px solid rgba(246, 0, 0, 0.78);
+    background: rgba(231, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+}
+.tachado{
+    text-decoration: line-through;
+    text-decoration-color:white;
+}
+
+.butao{
+    display: flex;
+    align-items:center;
+    justify-content:center;
     width: 2rem;
     height: 2rem;
+    padding:1rem;
     background-color: #532184 ;
     border: 0.3rem solid #532184;
     border-radius: 0.3rem;
-}
-.task ul li input[type=checkbox]:checked:before {
-    content: "";
-    display: block;
-    width: 20px;
-    height: 20px;
-    background-color:#532184;
+    
 }
 
-.task ul li input[type=checkbox]:checked:after {
-    content: "";
-    display: block;
-    width: 0.5rem;
-    height: 1rem;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-    position: absolute;
-    top: 25%;
-    left: 70%;
-}
-
-.task ul li{
-    display:flex;
-    margin-bottom: 2.4rem;
-}
