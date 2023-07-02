@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef} from 'react'
 import styles from './CSS/body.module.css'
+import MyWorker from './worker?worker'
 
 function Timer(){
 /*UseState*/ 
 const [isActive, setIsActive] = useState(false);
 const [segundos, setSegundos] = useState(1500);
-
+const workerRef = useRef(null);
 
 function criaHora(segundos){
     const data = new Date(segundos*1000); 
@@ -33,19 +34,30 @@ function teste(){
 }
 
 useEffect(() => {
-   
-    if(isActive){
-      const interval = setInterval(()=>{
-        setSegundos(segundos => segundos - 1);
-    
-      }, 1000);
-    
-      return () => {
-        clearInterval(interval);
-      };
-    }
-    
-     }, [isActive]);
+  workerRef.current = new MyWorker();
+
+
+  workerRef.current.postMessage({startTime:1500});
+
+
+  return () => {
+    workerRef.current.terminate();
+  };
+}, []);
+
+useEffect(()=>{
+
+  if(isActive){
+     workerRef.current.postMessage({isActive:'start', seconds:segundos});
+     workerRef.current.onmessage = function(event) {
+      console.log(event.data)
+      setSegundos(event.data);
+    };
+  }else{
+    workerRef.current.postMessage('stop');
+  }
+  
+},[isActive])
     
     
 if(segundos === 0){
