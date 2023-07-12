@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import './CSS/Header.css'
-import Modal from './Modal'
+
 
 function Header() {
 const [isRendered, setIsRendered] = useState(false);
@@ -43,23 +43,12 @@ function handleSubmit(event){
   return (
     <div className='main'>
      <div className="container">
-      <h3>Bem-Vindo de volta, Daniel</h3>
+      <h3>Bem-Vindo de volta ao SmartStudy</h3>
 
 
     <button onClick={toggle} className='header_btn'>Adicionar</button>
 
-    {isRendered && 
-    ( <Modal toggle={toggle}>
-        <form className='form_modal' onSubmit={(e)=>{handleSubmit(e)}}>
-
-        <input type="text" value={inputValue} onChange={handleInputChange} />
-        <button type="submit">Salvar</button>
-
-        </form>
-      </Modal>
-      )}
-
-   
+ 
 
      </div>
     </div>

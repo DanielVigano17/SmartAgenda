@@ -1,0 +1,127 @@
+.container{
+    display:flex;
+    justify-content:space-between;
+    height: 69.6rem;
+    width:100%;
+    margin-top: 7.6rem;
+    padding-right: 7.1rem;
+
+    
+}
+
+.pomo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    max-width: 60%;
+    width: 100%;
+    max-height: 100%;
+    height: 100%;
+    background: rgba(70, 0, 104, 0.24);
+    border-radius: 1.9rem;
+    margin-right: 2.4rem;
+    padding-inline:3.6rem;
+
+}
+
+.timer{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    max-width: 90%;
+    width:100%;
+    height: 51.6rem;
+    background: #0E0024;
+    border-radius: 19px;
+    margin-top: 4.8rem;
+}
+
+.pomo ul{
+    display:flex;
+    gap: 9.2rem;
+    margin-top: 3.7rem;
+}
+.pomo ul span{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.2rem;
+    line-height: 2rem;
+    color: var(--cor--btn);
+    cursor: pointer;
+    padding-bottom: 0.4rem;
+   
+}
+
+
+.pomo ul span:hover{
+    border-bottom: solid 0.3rem var(--cor--btn);
+    transition: 0.2s linear;
+}
+.selected_timer{
+
+    border-bottom: solid 0.3rem var(--cor--btn);
+}
+
+.pomo h1{
+    font-weight: 700;
+    font-size: 11.4rem;
+    line-height: 11rem;
+    color: white;
+    margin-top: 6.5rem;
+}
+
+.active_button{
+    margin-top: 6.8rem;
+    background: #532184;
+    box-shadow: 1px 8px 0px 1px rgba(83, 33, 132, 0.25);
+    border-radius: 1rem;
+    width: 22.1rem;
+    height: 6.2rem;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #180024;
+    padding: 1rem 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    background-color: var(--cor--btn);
+    cursor: pointer;
+    color: white;
+}
+
+.inactive_button{
+    margin-top: 6.8rem;
+    background: #532184;
+    box-shadow: none;
+    border-radius: 1rem;
+    width: 22.1rem;
+    height: 6.2rem;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: #180024;
+    padding: 1rem 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    background-color: var(--cor--btn);
+    cursor: pointer;
+    color: white;
+    transform: translateY(0.4rem);
+}
+@media (max-width : 1477px){
+
+    .pomo h1{
+        font-size: 9.4rem;
+       }
+    .pomo{
+     padding-inline: 2.4rem; 
+    }
+
+    .pomo ul{
+        gap: 4.2rem;
+
+    }
+    .pomo ul li span{
+        font-size: 1.7rem;
+    }
+}

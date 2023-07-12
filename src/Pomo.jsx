@@ -82,7 +82,7 @@ const removerTarefa = (index)=>{
 
         <Timer/>  
         <div className={styles.task}>
-            <h1>Taks</h1>
+            <h2>Taks</h2>
 
             <ul>
             {
@@ -92,7 +92,7 @@ const removerTarefa = (index)=>{
 
               <div className={styles.content_text}>
 
-              <button className={styles.butao} onClick={()=>{tacharTarefa(index)}}>{item.completed ? "X" : ""}</button>
+              <button className={styles.tachar_btn} onClick={()=>{tacharTarefa(index)}}>{item.completed ? "X" : ""}</button>
 
               <span className={`taf ${item.completed ? styles.tachado : ''}`}>{item.text}</span>
 
@@ -108,7 +108,7 @@ const removerTarefa = (index)=>{
              }
             </ul>
 
-            <button onClick={toggle}>teste</button>
+            <button onClick={toggle} className={styles.add_btn}>Adicionar</button>
 
             {isRendered && 
     ( <Modal toggle={toggle}>
