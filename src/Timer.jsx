@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef} from 'react'
+import './CSS/main.css'
 import styles from './CSS/Timer.module.css'
 import MyWorker from './worker?worker'
 

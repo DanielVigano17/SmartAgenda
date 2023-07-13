@@ -20,6 +20,8 @@ function Nav() {
           </li>
         </ul>
 
+        <button className={styles.btn_config}><img src="config-icon.svg" alt="" /></button>
+
      </div>
     </div>
   )

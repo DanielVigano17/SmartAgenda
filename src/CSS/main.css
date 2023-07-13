@@ -52,6 +52,14 @@ body::-webkit-scrollbar-thumb {
    
   }
 
+h1{
+    font-weight: 700;
+    font-size: 11.4rem;
+    line-height: 11rem;
+    color: var(--text--color);
+    margin-top: 6.5rem;
+}
+
 h2 {
     font-weight: 700;
     font-size: 3rem;
@@ -75,7 +83,29 @@ button{
     color: var(--text--color);
     border-radius: 0.5rem;
 }
+button:hover{
+    transform: scale(0.97);
+    transition: 0.2s linear;
+}
+input[type=text]{
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 3px 5px 14px 1px rgba(0, 0, 0, 0.25);
+
+}
 .container{
     padding-left: 4.2rem;
     padding-right: 8rem;
+}
+
+
+
+@media (max-width : 1477px){
+
+    h1{
+        font-size: 9.4rem;
+    }
+    .container{
+        
+        padding-right: 6rem;
+    }
 }

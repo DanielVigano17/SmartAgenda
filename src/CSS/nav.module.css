@@ -3,17 +3,22 @@
     width: 100%;
     border-right: 0.1rem solid #460068;
     height:100%;
+    
 }
 .container{
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-height: 88%;
     height:100%;
-
+    padding-top: 9.9rem;
+    padding-bottom: 2rem;
+    justify-content: space-between;
+    border-bottom: 0.1rem solid #460068;
 }
 .container ul{
-    margin-top: 9.9rem;
+
     border-top: 1px solid #460068;
     max-width: 100%;
     width: 100%;
@@ -37,7 +42,15 @@
     justify-content: center;
     width: 100%;
 }
+.container button:hover{
+    transform: scale(0.93);
+    transition: 0.2s linear;
+}
 
 .container button img{
    max-width: 3.6rem;
+}
+
+.btn_config{
+
 }

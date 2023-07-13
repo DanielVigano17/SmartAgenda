@@ -82,7 +82,7 @@ const removerTarefa = (index)=>{
 
         <Timer/>  
         <div className={styles.task}>
-            <h2>Taks</h2>
+            <h2>Task</h2>
 
             <ul>
             {
@@ -115,6 +115,7 @@ const removerTarefa = (index)=>{
         <form className='form_modal' onSubmit={(e)=>{handleSubmit(e)}}>
 
         <input type="text" value={inputValue} onChange={handleInputChange} />
+        
         <button type="submit">Salvar</button>
 
         </form>
