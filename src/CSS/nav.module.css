@@ -33,7 +33,7 @@
 
 }
 
-.container button{
+.list_button{
     background-color: transparent;
     max-width: 3.6rem;
     max-height: 3.6rem;
@@ -49,8 +49,4 @@
 
 .container button img{
    max-width: 3.6rem;
-}
-
-.btn_config{
-
 }

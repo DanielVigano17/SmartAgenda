@@ -87,9 +87,18 @@ button:hover{
     transform: scale(0.97);
     transition: 0.2s linear;
 }
-input[type=text]{
+label{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+}
+input{
     font-family: 'Roboto', sans-serif;
     box-shadow: 3px 5px 14px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 0.5rem;
+    border: 1px solid #E5E5E5;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
 
 }
 .container{

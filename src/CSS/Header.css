@@ -20,18 +20,4 @@
     padding:0;
     margin-top:1.9rem;
 }
-.form_modal{
-    
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-}
 
-.form_modal input{
-    width: 100%;
-    height: 3.1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #E5E5E5;
-    margin-bottom: 1.5rem;
-    padding-left: 1rem;
-}

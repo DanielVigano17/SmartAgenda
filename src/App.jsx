@@ -1,24 +1,38 @@
-import { useState } from 'react'
+
 import './CSS/App.css'
-import Header from './Header'
-import Nav from './Nav'
+import Header from './components/Header'
+import Nav from './components/Nav'
+import { createContext,useEffect,useState }  from 'react';
 import Pomo from './Pomo'
 
-function App() {
+export const TimeContext = createContext(null);
 
+
+function App() {
+  
+  const [segundos, setSegundos] = useState(localStorage.getItem('timers') ? JSON.parse(localStorage.getItem('timers')) : [1500,300,900]);
+  
+  useEffect(()=>{
+    localStorage.setItem('timers', JSON.stringify(segundos));
+  },[segundos])
 
   return (
-    <div className='grid-container'>
+  <TimeContext.Provider value={segundos}>
+      
+      <div className='grid-container'>
 
-     <Nav />
-     
-     <div className='content'>
+      <Nav setSegundos={setSegundos}/>
 
-     <Header />
-    <Pomo />
-     </div>
-     
-    </div>
+      <div className='content'>
+
+      <Header />
+      <Pomo setSegundos={setSegundos} />
+      
+      </div>
+
+      </div>
+      
+  </TimeContext.Provider>
   )
 }
 

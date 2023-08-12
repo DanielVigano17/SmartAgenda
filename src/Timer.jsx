@@ -1,24 +1,16 @@
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef, useContext} from 'react'
 import './CSS/main.css'
 import styles from './CSS/Timer.module.css'
+import criaHora from './utils/criaHora'
+import { TimeContext } from './App'
 import MyWorker from './worker?worker'
 
-function Timer(){
+function Timer(props){
 /*UseState*/ 
 const [isActive, setIsActive] = useState(false);
-const [segundos, setSegundos] = useState(3000);
+const segundos = useContext(TimeContext);
+const [quantidadeSec, setQuantidadeSec] = useState(segundos[0]);
 const workerRef = useRef(null);
-
-function criaHora(segundos){
-    const data = new Date(segundos*1000); 
-  
-    return data.toLocaleTimeString('pt-BR',{
-        hour12: false,
-        minute: '2-digit',
-        second: '2-digit',
-        timeZone: 'GMT'
-    })
-  }
 
 
 function activeAudio(){
@@ -26,12 +18,17 @@ const audioElement = document.querySelector('#audio')
 audioElement.play();
 }
 
+useEffect(()=>{
+  select(0,null)
+
+},[segundos])
+
 useEffect(() => {
   workerRef.current = new MyWorker();
 
 
   workerRef.current.postMessage({startTime:1500});
-
+  setQuantidadeSec(segundos[0])
 
   return () => {
     workerRef.current.terminate();
@@ -41,10 +38,11 @@ useEffect(() => {
 useEffect(()=>{
 
   if(isActive){
-     workerRef.current.postMessage({isActive:'start', seconds:segundos});
+    
+     workerRef.current.postMessage({isActive:'start', seconds:quantidadeSec});
      workerRef.current.onmessage = function(event) {
       console.log(event.data)
-      setSegundos(event.data);
+      setQuantidadeSec(event.data);
     };
   }else{
     workerRef.current.postMessage('stop');
@@ -53,11 +51,11 @@ useEffect(()=>{
 },[isActive])
     
     
-if(segundos === 0){
+if(quantidadeSec === 0){
   activeAudio()
   const spans = document.querySelectorAll('.minutes_select')
       setIsActive(!isActive)
-      setSegundos(1500)
+      setQuantidadeSec(segundos[0])
       spans.forEach(element => {
         element.classList.remove(styles.selected_timer)
       });
@@ -71,13 +69,15 @@ const toggle = () => {
 
 function select(num,event){
   const spans = document.querySelectorAll('.minutes_select')
-  const selected_span = event.target
+
+  const selected_span = event ? event.target : spans[num]
+
   spans.forEach(element => {
     element.classList.remove(styles.selected_timer)
   });
 
   selected_span.classList.add(styles.selected_timer)
-  setSegundos(num)
+  setQuantidadeSec(segundos[num])
   setIsActive(false)
 }
 
@@ -86,13 +86,13 @@ function select(num,event){
 
         <div className= {styles.timer}>
         <ul>
-              <li><span className={`minutes_select ${styles.selected_timer}`} onClick={(e)=>{select(3000,e)}}>Pomodoro</span></li>
-              <li><span className={`minutes_select `} onClick={(e)=>{select(600,e)}}>Short Brake</span></li>
-              <li><span className={`minutes_select `} onClick={(e)=>{select(900,e)}}>Long Brake</span></li>
+              <li><span className={`minutes_select ${styles.selected_timer}`} onClick={(e)=>{select(0,e)}}>Pomodoro</span></li>
+              <li><span className={`minutes_select `} onClick={(e)=>{select(1,e)}}>Short Brake</span></li>
+              <li><span className={`minutes_select `} onClick={(e)=>{select(2,e)}}>Long Brake</span></li>
           </ul>
 
     
-          <h1>{criaHora(segundos)}</h1>
+          <h1>{criaHora(quantidadeSec)}</h1>
 
           <audio id='audio'>
           <source src="alarm-clock.mp3" type="audio/mpeg"></source>

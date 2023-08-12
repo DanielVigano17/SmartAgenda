@@ -4,7 +4,7 @@ import './CSS/main.css'
 import Timer from './Timer'
 import Modal from './Modal'
 
-function Pomo() {
+function Pomo(props) {
  const [tarefas,setTarefas] = useState([])
  const [isRendered, setIsRendered] = useState(false);
  const [inputValue, setInputValue] = useState('');
@@ -19,7 +19,7 @@ function Pomo() {
      setInputValue(event.target.value);
    };
  
- function handleSubmit(event){
+ function salvarTarefa(event){
    event.preventDefault();
    let objeto = []
    
@@ -44,17 +44,21 @@ function Pomo() {
 
 useEffect(()=>{
 
-  function buscardados(){
+  function buscarTarefas(){
+
     if(localStorage.getItem('tarefas')){
-      const antigas_tarefas = JSON.parse(localStorage.getItem('tarefas'))
-      setTarefas(antigas_tarefas)  
+
+      setTarefas(JSON.parse(localStorage.getItem('tarefas')))  
       
     }else{
+
       return null
+
     }
+    
   }
 
-  buscardados()
+  buscarTarefas()
   
 },[])
 
@@ -80,7 +84,7 @@ const removerTarefa = (index)=>{
     return (
      <div className= 'container'>
 
-        <Timer/>  
+        <Timer setSegundos={props.setSegundos}/>  
         <div className={styles.task}>
             <h2>Task</h2>
 
@@ -112,7 +116,7 @@ const removerTarefa = (index)=>{
 
             {isRendered && 
     ( <Modal toggle={toggle}>
-        <form className='form_modal' onSubmit={(e)=>{handleSubmit(e)}}>
+        <form className='form_modal' onSubmit={(e)=>{salvarTarefa(e)}}>
 
         <input type="text" value={inputValue} onChange={handleInputChange} />
         
