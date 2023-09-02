@@ -1,4 +1,10 @@
-
+.container{
+    display:flex;
+    justify-content:space-between;
+    padding-left: 4.2rem;
+    padding-right: 8rem;
+    margin-top: 3.2rem;
+}
 .task{
     display:flex;
     flex-direction:column;
@@ -8,6 +14,7 @@
     height: 69.6rem;
     background: var(--cor--secundaria);
     border-radius: 1.9rem;
+
 }
 
 .task h2 {
@@ -53,6 +60,7 @@
     overflow-wrap: anywhere;
 }
 .trash{
+    min-width: 3.3rem;
     width: 3.3rem;
     height: 3.3rem;
     border-radius: 3px;
@@ -87,6 +95,70 @@
 
 .add_btn{
     width: 11.1rem;
-    height: 3.1rem;
+    max-height: 3.1rem;
+    height:100%;
 }
 
+
+@media (max-width : 1077px){
+
+    .task{
+        max-width: 100%;
+        padding-inline: 4.2rem;
+    }
+    .add_btn{
+        margin-bottom: 3.4rem;
+       
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media (max-width : 730px){
+    .task{
+        padding-inline: 4.8rem;
+    }
+    .task ul{
+        padding-inline: 0;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-inline: 4.2rem;
+    }
+    .task ul li span{
+        font-size: 1.5rem;
+        margin-left: 4.6rem;
+        max-width: 20.7rem;
+    }
+}
+
+@media (max-width : 550px){
+    .task h2{
+        font-size: 2.6rem;
+    }
+    .task{
+        padding-inline: 7%;
+    }
+    .task ul{
+        padding-inline: 0;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-inline: 2rem;
+    }
+    .task ul li span{
+        font-size: 1.5rem;
+        margin-left: 2.6rem;
+        max-width: 19.7rem;
+    }
+}

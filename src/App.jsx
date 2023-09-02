@@ -3,7 +3,7 @@ import './CSS/App.css'
 import Header from './components/Header'
 import Nav from './components/Nav'
 import { createContext,useEffect,useState }  from 'react';
-import Pomo from './Pomo'
+import Pomo from './Task'
 
 export const TimeContext = createContext(null);
 

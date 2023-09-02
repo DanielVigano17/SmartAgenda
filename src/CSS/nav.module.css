@@ -1,8 +1,10 @@
 #Nav{
     max-width: 9.5rem;
     width: 100%;
+    max-height: 100vh;
+    height: 100%;
     border-right: 0.1rem solid #460068;
-    height:100%;
+    position:fixed;
     
 }
 .container{
@@ -50,3 +52,11 @@
 .container button img{
    max-width: 3.6rem;
 }
+
+
+@media (max-width : 730px){
+  #Nav{
+    display: none;
+  }
+}
+

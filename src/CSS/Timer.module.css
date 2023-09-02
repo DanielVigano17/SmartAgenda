@@ -30,7 +30,8 @@
     align-items:center;
     max-width: 90%;
     width:100%;
-    height: 51.6rem;
+    max-height: 51.6rem;
+    height: 100%;
     background: #0E0024;
     border-radius: 19px;
     margin-top: 4.8rem;
@@ -104,3 +105,66 @@
         font-size: 1.7rem;
     }
 }
+
+@media (max-width : 1077px){
+
+   .pomo{
+       max-height: 60.8rem;
+       max-width: 100%;
+       margin-right: 0;
+       margin-bottom: 3.6rem;
+   }
+}
+
+@media (max-width : 530px){
+
+    .pomo{
+        max-height: 47.8rem;
+        padding-inline: 1rem;
+      
+    }
+    .pomo ul{
+        gap: 2.2rem;
+    }
+    .timer{
+        margin-top: 3.4rem;
+        max-height: 40.8rem;
+    }
+    .timer h1{
+        font-size: 8.3rem;
+    }
+   
+ }
+
+@media (max-width : 415px){
+    .pomo{
+        padding-inline: 0;
+    }
+
+    .active_button{
+        margin-top: 4.8rem;
+        border-radius: 1rem;
+        width: 18.1rem;
+        height: 6.2rem;
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+        background-color: var(--cor--btn);
+    
+    }
+    
+    .inactive_button{
+        margin-top: 4.8rem;
+        width: 18.1rem;
+        height: 6.2rem;
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+        background-color: var(--cor--btn);
+        transform: translateY(0.4rem);
+    }
+
+    .pomo ul li span{
+        font-size: 1.3rem;
+    }
+   
+   
+ }

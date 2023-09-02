@@ -82,7 +82,7 @@ const removerTarefa = (index)=>{
 }
 
     return (
-     <div className= 'container'>
+     <div className= {styles.container}>
 
         <Timer setSegundos={props.setSegundos}/>  
         <div className={styles.task}>

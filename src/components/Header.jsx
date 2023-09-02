@@ -6,7 +6,7 @@ function Header() {
 
   return (
     <div className='main'>
-     <div className="container">
+     <div className="container-header">
       <h3>Bem-Vindo de volta ao SmartStudy</h3>
 
 

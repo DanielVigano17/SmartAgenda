@@ -1,11 +1,19 @@
 .grid-container{
-    display: grid;
-    grid-template-columns: 1fr 13fr; 
-    gap:0;
+    display:flex;
+    position:relative;
     height:100%;
 }
 .content{
    display:flex;
    flex-direction:column;
    padding-bottom:3.6rem;
+   margin-left: 12.5rem;
+   max-width:100%;
+   width:100%;
+}
+
+@media (max-width : 730px){
+    .content{
+        margin-left:0;
+    }
 }
