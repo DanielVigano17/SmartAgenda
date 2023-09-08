@@ -4,6 +4,7 @@ import './CSS/main.css'
 import Timer from './Timer'
 import Modal from './Modal'
 
+
 function Pomo(props) {
  const [tarefas,setTarefas] = useState([])
  const [isRendered, setIsRendered] = useState(false);
@@ -84,7 +85,7 @@ const removerTarefa = (index)=>{
     return (
      <div className= {styles.container}>
 
-        <Timer setSegundos={props.setSegundos}/>  
+        <Timer/>  
         <div className={styles.task}>
             <h2>Task</h2>
 

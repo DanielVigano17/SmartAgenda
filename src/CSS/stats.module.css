@@ -1,0 +1,94 @@
+.container{
+    max-width: 100%;
+    width: 100%;
+    height: 67.1rem;  
+    border-radius: 1.9rem;
+    border: 0.1rem solid #460068;
+    margin-top: 3.2rem;
+}
+
+.links_stats{
+    display:flex;
+    justify-content: center;
+    gap: 5.2rem;
+    margin-top: 3.7rem;
+}
+
+.links_stats li{
+    font-weight: 500;
+    font-size: 2.2rem;
+    line-height: 2rem;
+    color: var(--cor--btn);
+    cursor: pointer;
+    padding-bottom: 0.4rem;
+    font-size: 2rem;
+}
+
+.links_stats li a:active {
+    color: var(--cor--btn);
+  }
+
+.selected{
+    border-bottom: solid 0.3rem var(--cor--btn);
+}
+
+.stats1{
+    max-height: 15.5rem;
+    height: 15.5rem;
+    max-width: 100%;
+    margin-inline: 5rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    border: 0.1rem solid #460068;
+    background: rgba(18, 2, 45, 0.79);
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+    margin-inline: 8.5rem;
+}
+.info p{
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.info h3{
+    font-size: 5.5rem;
+    font-weight: 700;
+    line-height: normal;
+}
+.info li:first-of-type h3{
+    color: #4EC149;
+    font-size: 5.5rem;
+    font-weight: 700;
+    line-height: normal;
+}
+.positive{
+    color: #4EC149;
+}
+.negative{
+    color: #F60000;
+}
+.info li:nth-of-type(3) h3{
+    color: #FFF;
+    font-size: 2.4rem;
+    margin-top: 1.5rem;
+}
+
+.grafico{
+    display: flex;
+    height: 26.3rem;
+    border-radius: 10px;
+    border: 1px solid #460068;
+    background: rgba(18, 2, 45, 0.79);
+    margin-top: 5rem;
+    margin-inline: 5rem;
+
+}
+
+.none_stroke{
+    stroke: none;
+}

@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Nav from './components/Nav'
 import { createContext,useEffect,useState }  from 'react';
 import Pomo from './Task'
+import { Outlet } from 'react-router-dom';
 
 export const TimeContext = createContext(null);
 
@@ -26,7 +27,7 @@ function App() {
       <div className='content'>
 
       <Header />
-      <Pomo setSegundos={setSegundos} />
+      <Outlet context={setSegundos}/>
       
       </div>
 

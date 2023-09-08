@@ -2,7 +2,6 @@
     display:flex;
     justify-content:space-between;
     padding-left: 4.2rem;
-    padding-right: 8rem;
     margin-top: 3.2rem;
 }
 .task{
@@ -130,7 +129,6 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        padding-inline: 4.2rem;
     }
     .task ul li span{
         font-size: 1.5rem;

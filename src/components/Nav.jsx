@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import styles from '../CSS/nav.module.css'
 import { TimeContext } from '../App';
 import Modal from '../Modal';
-
+import { Link } from 'react-router-dom';
 
 function Nav(props) {
   const [isRendered, setIsRendered] = useState(false);
@@ -31,17 +31,17 @@ function Nav(props) {
      <div className={styles.container}>
         <ul>
           <li>
-          <button className={styles.list_button}><img src="home-icon.svg" alt="" /></button>
+          <Link to="/" className={styles.list_button}><img src="/home-icon.svg" alt="" /></Link>
           </li>
           <li>
-          <button className={styles.list_button}><img src="calendar-icon.svg" alt="" /></button>
+          <Link to="/agenda" className={styles.list_button}><img src="/calendar-icon.svg" alt="" /></Link>
           </li>
           <li>
-          <button className={styles.list_button}><img src="grafico-icon.svg" alt="" /></button>
+          <Link to="/estatisticas/1" className={styles.list_button}><img src="/grafico-icon.svg" alt="" /></Link>
           </li>
         </ul>
 
-        <button className={styles.list_button} onClick={toggle}><img src="config-icon.svg" alt="" /></button>
+        <button className={styles.list_button} onClick={toggle}><img src="/config-icon.svg" alt="" /></button>
 
         { isRendered && (
 

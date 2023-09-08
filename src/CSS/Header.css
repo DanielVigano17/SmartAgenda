@@ -7,7 +7,7 @@
     justify-content: space-between; 
     padding-top:4rem;
     padding-left: 4.2rem;
-    padding-right: 8rem;
+
 
 }
 
@@ -24,13 +24,6 @@
     margin-top:1.9rem;
 }
 
-@media (max-width : 730px){
-
-    .container-header{
-        padding-right: 4.2rem;
-}
-
-}
 
 @media (max-width : 550px){
     .header_btn{
@@ -39,7 +32,7 @@
         width: 9rem;
     }
     .container-header{
-        padding-inline: 7%;
+        padding-inline: 2rem;
     }
     .container-header h3{
         font-size: 1.4rem;

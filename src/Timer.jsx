@@ -4,6 +4,7 @@ import styles from './CSS/Timer.module.css'
 import criaHora from './utils/criaHora'
 import { TimeContext } from './App'
 import MyWorker from './worker?worker'
+import { axiosInstance }  from './utils/axiosConfig'
 
 function Timer(props){
 /*UseState*/ 
@@ -13,15 +14,37 @@ const [quantidadeSec, setQuantidadeSec] = useState(segundos[0]);
 const workerRef = useRef(null);
 
 
+
 function activeAudio(){
 const audioElement = document.querySelector('#audio')
 audioElement.play();
 }
 
 useEffect(()=>{
-  select(0,null)
+  select(0,null,false)
 
 },[segundos])
+
+useEffect(()=>{
+
+  const spans = document.querySelectorAll('.minutes_select')
+
+  if(spans[0].classList.contains(styles.selected_timer) && quantidadeSec === 1){
+    axiosInstance.post('/update', {
+
+      date: new Date(),
+      segundos: segundos[0],
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  
+   }
+  
+},[quantidadeSec])
 
 useEffect(() => {
   workerRef.current = new MyWorker();
@@ -41,17 +64,20 @@ useEffect(()=>{
     
      workerRef.current.postMessage({isActive:'start', seconds:quantidadeSec});
      workerRef.current.onmessage = function(event) {
-      console.log(event.data)
-      setQuantidadeSec(event.data);
+     setQuantidadeSec(event.data);
+
     };
   }else{
     workerRef.current.postMessage('stop');
+
+
   }
   
 },[isActive])
     
     
 if(quantidadeSec === 0){
+
   activeAudio()
   const spans = document.querySelectorAll('.minutes_select')
       setIsActive(!isActive)
@@ -60,18 +86,37 @@ if(quantidadeSec === 0){
         element.classList.remove(styles.selected_timer)
       });
       spans[0].classList.add(styles.selected_timer)   
-}
 
+}
 
 const toggle = () => {
       setIsActive(!isActive) 
+
+
 }
 
-function select(num,event){
+function select(num,event, flagSeFoiExecutadoPeloBotão){
+
   const spans = document.querySelectorAll('.minutes_select')
+
 
   const selected_span = event ? event.target : spans[num]
 
+  if(spans[0].classList.contains(styles.selected_timer) && quantidadeSec !== segundos[0] && quantidadeSec !== 1 && flagSeFoiExecutadoPeloBotão){
+    axiosInstance.post('/update', {
+
+      date: new Date(),
+      segundos: segundos[0] - quantidadeSec,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
+  
   spans.forEach(element => {
     element.classList.remove(styles.selected_timer)
   });
@@ -79,6 +124,7 @@ function select(num,event){
   selected_span.classList.add(styles.selected_timer)
   setQuantidadeSec(segundos[num])
   setIsActive(false)
+
 }
 
     return(
@@ -86,9 +132,9 @@ function select(num,event){
 
         <div className= {styles.timer}>
         <ul>
-              <li><span className={`minutes_select ${styles.selected_timer}`} onClick={(e)=>{select(0,e)}}>Pomodoro</span></li>
-              <li><span className={`minutes_select `} onClick={(e)=>{select(1,e)}}>Short Brake</span></li>
-              <li><span className={`minutes_select `} onClick={(e)=>{select(2,e)}}>Long Brake</span></li>
+              <li><span className={`minutes_select ${styles.selected_timer}`} onClick={(e)=>{select(0,e,true)}}>Pomodoro</span></li>
+              <li><span className={`minutes_select `} onClick={(e)=>{select(1,e,true)}}>Short Brake</span></li>
+              <li><span className={`minutes_select `} onClick={(e)=>{select(2,e,true)}}>Long Brake</span></li>
           </ul>
 
     
