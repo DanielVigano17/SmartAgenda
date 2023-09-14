@@ -4,6 +4,7 @@ import App from '../App'
 import Pomo from '../Task'
 import Stats from '../Pages/Stats'
 import { statsLoader } from '../Pages/Stats'
+import Login from '../Pages/Login'
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,9 @@ const router = createBrowserRouter([
                 loader: statsLoader,
             },
         ],
+    },{
+        path: '/login',
+        element: <Login />,
     }
 ])
 

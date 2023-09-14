@@ -1,0 +1,60 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form_login{
+    display: flex;
+    flex-direction: column;
+    padding-top: 7.8rem;
+    max-width: 52.1rem;
+    width: 100%;
+    max-height: 54.9rem;
+    height: 100%;
+    border-radius: 3.2rem;
+    padding-inline: 8.2rem;
+    background-color: var(--cor--secundaria);
+}
+
+.form_login label{
+    color: #FFF;
+    text-align: center;
+    max-width: fit-content;
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.form_login input{
+    border-radius: 3.2rem;
+    background: rgba(95, 72, 236, 0.33);
+    border: none;
+    margin-top: 1.2rem;
+}
+
+.form_login button{
+    max-width: 17.3rem;
+    max-height: 5.8rem;
+    margin-top: 5.4rem;
+    margin-inline: auto;
+    border-radius: 3.2rem;
+    background: var(--cor--principal);
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.25);
+}
+
+.form_login p{
+    color: #FFF;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 4.4rem;
+}
+
+.form_login p span{
+    color: #5F48EC;
+}
+
