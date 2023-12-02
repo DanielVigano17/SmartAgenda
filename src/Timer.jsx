@@ -5,9 +5,12 @@ import criaHora from './utils/criaHora'
 import { TimeContext } from './App'
 import MyWorker from './worker?worker'
 import { axiosInstance }  from './utils/axiosConfig'
+import { authVerification } from './utils/authVerification'
+import { useOutletContext } from 'react-router-dom'
 
 function Timer(props){
-/*UseState*/ 
+
+const [userId] = useOutletContext()
 const [isActive, setIsActive] = useState(false);
 const segundos = useContext(TimeContext);
 const [quantidadeSec, setQuantidadeSec] = useState(segundos[0]);
@@ -22,7 +25,6 @@ audioElement.play();
 
 useEffect(()=>{
   select(0,null,false)
-
 },[segundos])
 
 useEffect(()=>{
@@ -33,6 +35,7 @@ useEffect(()=>{
     axiosInstance.post('/update', {
 
       date: new Date(),
+      userId: userId,
       segundos: segundos[0],
     })
     .then(function (response) {
@@ -104,8 +107,9 @@ function select(num,event, flagSeFoiExecutadoPeloBotão){
 
   if(spans[0].classList.contains(styles.selected_timer) && quantidadeSec !== segundos[0] && quantidadeSec !== 1 && flagSeFoiExecutadoPeloBotão){
     axiosInstance.post('/update', {
-
+      
       date: new Date(),
+      userId: userId,
       segundos: segundos[0] - quantidadeSec,
     })
     .then(function (response) {

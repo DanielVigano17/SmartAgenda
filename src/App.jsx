@@ -5,12 +5,13 @@ import Nav from './components/Nav'
 import { createContext,useEffect,useState }  from 'react';
 import Pomo from './Task'
 import { Outlet } from 'react-router-dom';
-
+import { useLoaderData } from 'react-router-dom';
 export const TimeContext = createContext(null);
 
 
 function App() {
-  
+  const user = useLoaderData();
+  console.log(user.uid)
   const [segundos, setSegundos] = useState(localStorage.getItem('timers') ? JSON.parse(localStorage.getItem('timers')) : [1500,300,900]);
   
   useEffect(()=>{
@@ -27,7 +28,7 @@ function App() {
       <div className='content'>
 
       <Header />
-      <Outlet context={setSegundos}/>
+      <Outlet context={[user.uid]}/>
       
       </div>
 

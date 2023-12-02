@@ -9,23 +9,32 @@ export async function statsLoader(){
 
     const response = await getTime()
 
+    console.log(response)
     return response || null
 }
 
 const Stats = () => {
     
-  const {segundos, segundosDiaAnterior} = useLoaderData()
+  const {segundos, segundosDiaAnterior, materiaMaisEstudada} = useLoaderData() || {segundos:0, segundosDiaAnterior:0}
 
   function calculaRelacaoDiaAnterior(segundos, segundosDiaAnterior){
-
-      if(segundos === segundosDiaAnterior){
-            return "0%"
+        let segundosDiaAnterior2 = segundosDiaAnterior
+        if(segundosDiaAnterior2 < 60){
+            segundosDiaAnterior2 = 60
+        }
+      
+      if(segundos === segundosDiaAnterior2 || segundos < 60){
+            return "0"
       }
 
-      const valor = ((segundos-segundosDiaAnterior) / segundosDiaAnterior) * 100
+      const valor = ((segundos-segundosDiaAnterior2) / segundos) 
+      console.log(valor)
+      if(valor < 1){
+            return valor.toFixed(2) * 100
+      }
 
 
-      return segundos > segundosDiaAnterior ? valor.toFixed(0) : valor.toFixed(0) 
+      return segundos > segundosDiaAnterior2 ? valor.toFixed(0) : valor.toFixed(0) 
   }
 
   return (
@@ -42,7 +51,7 @@ const Stats = () => {
             <ul className={styles.info}>
                 <li>
                     <p>Tempo de estudo :</p>
-                    <h3>{segundos > 3600 ? criaHora(segundos,false,true) + "h" : criaHora(segundos,false,false)+ "min"}</h3>
+                    <h3>{segundos >= 3600 ? criaHora(segundos,false,true) + "h" : criaHora(segundos,false,false)+ "min"}</h3>
                 </li>
                 <li>
                     <p>Relação com ontem:</p>
@@ -50,7 +59,7 @@ const Stats = () => {
                 </li>
                 <li>
                     <p>Mais estudado :</p>
-                    <h3>Programação</h3>
+                    <h3>{materiaMaisEstudada}</h3>
                 </li>
             </ul>
         </div>

@@ -1,11 +1,16 @@
 import { axiosInstance } from "./axiosConfig"
-
+import { getAuth, onAuthStateChanged, } from "firebase/auth";
+import { useOutletContext } from 'react-router-dom'
+import { authVerification } from '../utils/authVerification';
 
 export async function getTime(){
-
+  
+    const userId = await authVerification()
+    console.log("Aquii:"+ userId.uid)
     const response = await axiosInstance.post('/verify', {
 
         date: new Date(),
+        userId: userId.uid
 
       })
       .then(function (response) {

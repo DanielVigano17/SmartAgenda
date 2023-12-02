@@ -1,15 +1,17 @@
 import styles from './CSS/body.module.css'
 import { useState, useEffect} from 'react'
+import { useLoaderData } from 'react-router-dom'
 import './CSS/main.css'
 import Timer from './Timer'
 import Modal from './Modal'
 
 
 function Pomo(props) {
+  
  const [tarefas,setTarefas] = useState([])
  const [isRendered, setIsRendered] = useState(false);
  const [inputValue, setInputValue] = useState('');
- 
+
  
  const toggle = () => {
    setIsRendered(!isRendered)

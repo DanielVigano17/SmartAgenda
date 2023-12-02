@@ -1,34 +1,35 @@
 import React from 'react'
 import style from '../CSS/login.module.css'
 import { Form, Link, redirect } from 'react-router-dom'
-import { postLogin } from '../utils/auth'
+import { postCadastro } from '../utils/auth'
 import { authVerification } from '../utils/authVerification'
 
-export async function loginLoader({params, request}){
-
+export async function cadastroLoader({params,request}){
+  
   const isLogged = await authVerification()
   if(isLogged){
     return redirect('/')
   }else{
     return null
   }
-
-
 }
 
-export async function loginAction({params,request}){
+export async function cadastroAction({params,request}){
     
 const formData = await request.formData()
 
-await postLogin(formData.get('email'), formData.get('password'))
-
-
+try{
+  const statusCadastro = await postCadastro(formData.get('email'), formData.get('password'))
+}catch(err){
+  console.error(err)
+  return null
+}
 
 return redirect('/')
     
 }
 
-export const Login = () => {
+export const PageCadastro = () => {
   return (
     <div className={style.container}>
 
@@ -40,13 +41,12 @@ export const Login = () => {
             <label>Password :</label>
             <input type="text" name='password' />
 
-            <button type='submit'>Login</button>
+            <button type='submit'>Cadastrar</button>
 
-            <p>Não possui login? <Link to="/cadastro">Cadastre-se</Link></p>
+            <p>Já possui uma conta cadastrada? <br /> <Link to="/login">Faça Login</Link></p>
         </Form>
 
     </div>
   )
 }
 
-export default Login
