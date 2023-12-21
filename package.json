@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/x-charts": "^6.0.0-alpha.9",
+    "@radix-ui/react-select": "^2.0.0",
+    "aos": "^3.0.0-beta.6",
     "axios": "^1.5.0",
+    "chart.js": "^4.4.1",
     "firebase": "^10.4.0",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0"
   },

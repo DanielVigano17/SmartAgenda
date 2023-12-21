@@ -7,6 +7,7 @@ import MyWorker from './worker?worker'
 import { axiosInstance }  from './utils/axiosConfig'
 import { authVerification } from './utils/authVerification'
 import { useOutletContext } from 'react-router-dom'
+import initAOS from './utils/aosConfig'
 
 function Timer(props){
 
@@ -55,7 +56,7 @@ useEffect(() => {
 
   workerRef.current.postMessage({startTime:1500});
   setQuantidadeSec(segundos[0])
-
+  initAOS()
   return () => {
     workerRef.current.terminate();
   };
@@ -132,7 +133,7 @@ function select(num,event, flagSeFoiExecutadoPeloBotão){
 }
 
     return(
-        <div className={styles.pomo}>
+        <div data-aos="fade-right" className={styles.pomo}>
 
         <div className= {styles.timer}>
         <ul>

@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router-dom'
 import './CSS/main.css'
 import Timer from './Timer'
 import Modal from './Modal'
-
+import initAOS from './utils/aosConfig'
 
 function Pomo(props) {
   
@@ -60,7 +60,7 @@ useEffect(()=>{
     }
     
   }
-
+  initAOS()
   buscarTarefas()
   
 },[])
@@ -87,8 +87,8 @@ const removerTarefa = (index)=>{
     return (
      <div className= {styles.container}>
 
-        <Timer/>  
-        <div className={styles.task}>
+        <Timer />  
+        <div data-aos="fade-left" className={styles.task}>
             <h2>Task</h2>
 
             <ul>

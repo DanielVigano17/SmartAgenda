@@ -38,7 +38,7 @@ const router = createBrowserRouter([
                 element: <h1>Agenda</h1>,
             },
             {
-                path: '/estatisticas/:date',
+                path: '/estatisticas/:intervaloDeDias',
                 element: <Stats />,
                 loader: statsLoader,
                

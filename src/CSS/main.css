@@ -2,6 +2,7 @@
     --cor--principal: #0E0024;
     --cor--secundaria: #1D0737;
     --text--color: #FFFFFF;
+    --text--gray--color:#b6b6b696;
     --cor--btn: #532184;
 
     background-color: var(--cor--principal);
@@ -72,6 +73,11 @@ h3{
     line-height: 2.8rem;
     color: var(--text--color);
 }
+p{
+  font-size: 1.6rem;
+  color: var(--text--color);
+  font-weight: 700;
+}
 
 button{
     padding: 0;
@@ -119,4 +125,3 @@ input{
         padding-right: 6rem;
     }
 }
-

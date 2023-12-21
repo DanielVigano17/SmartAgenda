@@ -5,6 +5,7 @@
     border-radius: 1.9rem;
     border: 0.1rem solid #460068;
     margin-top: 3.2rem;
+    
 }
 
 .links_stats{
@@ -39,8 +40,9 @@
     margin-inline: 5rem;
     margin-top: 5rem;
     border-radius: 1rem;
-    border: 0.1rem solid #460068;
+    padding-top: 10px;
     background: rgba(18, 2, 45, 0.79);
+    box-shadow: 4px 8px 12.8px 0px rgba(0, 0, 0, 0.17);
 }
 
 .info{
@@ -78,17 +80,50 @@
     margin-top: 1.5rem;
 }
 
+.no_search{
+    color: var(--text--gray--color);
+    margin-top: 7rem;
+    text-align: center;
+}
+
+.stats2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6.5rem;
+    max-height: 35.5rem;
+    height: 100%;
+    max-width: 100%;
+    margin-inline: 5rem;
+    margin-top: 5rem;
+    border-radius: 1rem;
+    
+ 
+}
+.stats2 p{
+
+    margin-bottom: 0.5rem;
+    max-width: 100%;
+    width: 100%;
+}
 .grafico{
     display: flex;
-    height: 26.3rem;
+    flex-direction: column;
+    max-width: 100%;
+    padding-top: 2.4rem;
+    padding-inline: 1.4rem;
+    width: 100%;
+    align-items: center;
+    height: 28.3rem;
     border-radius: 10px;
-    border: 1px solid #460068;
     background: rgba(18, 2, 45, 0.79);
-    margin-top: 5rem;
-    margin-inline: 5rem;
+    box-shadow: 4px 8px 12.8px 0px rgba(0, 0, 0, 0.17);
 
 }
 
-.none_stroke{
-    stroke: none;
+.tamanho_grafico{
+    max-height: 20rem;
+    max-width: 20rem;
+    height: 100%;
+    width: 100%;
 }

@@ -10,6 +10,7 @@ export const TimeContext = createContext(null);
 
 
 function App() {
+
   const user = useLoaderData();
   console.log(user.uid)
   const [segundos, setSegundos] = useState(localStorage.getItem('timers') ? JSON.parse(localStorage.getItem('timers')) : [1500,300,900]);
@@ -37,6 +38,7 @@ function App() {
   </TimeContext.Provider>
   )
 }
+
 
 export default App
    
