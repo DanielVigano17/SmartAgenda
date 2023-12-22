@@ -51,7 +51,7 @@
 button{
     height: 4.4rem;
     width: 28.1rem;
-
+    background-color: var(--cor--btn);
 }
 
 label{

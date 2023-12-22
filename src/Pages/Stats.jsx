@@ -37,7 +37,6 @@ const Stats = () => {
 
   }
 
-
   function calculaRelacaoDiaAnterior(segundos, segundosDiaAnterior){
 
         let minutosDiaAnterior2 = Math.round(segundosDiaAnterior/60)
@@ -51,11 +50,11 @@ const Stats = () => {
       }
 
       const valor = ((minutos-minutosDiaAnterior2) / minutosDiaAnterior2) 
-
+      console.log(valor)
       if(valor < 1){
-            return valor.toFixed(2) * 100
+            return (valor.toFixed(2) * 100).toFixed(0)
       }else if(valor >= 1){
-        return valor * 100
+        return (valor * 100).toFixed(0)
     }
 
 

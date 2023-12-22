@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext} from 'react'
 import './CSS/main.css'
 import styles from './CSS/Timer.module.css'
 import criaHora from './utils/criaHora'
-import { TimeContext } from './App'
+import { MateriaSelecionada, TimeContext } from './App'
 import MyWorker from './worker?worker'
 import { axiosInstance }  from './utils/axiosConfig'
 import { authVerification } from './utils/authVerification'
@@ -14,6 +14,7 @@ function Timer(props){
 const [userId] = useOutletContext()
 const [isActive, setIsActive] = useState(false);
 const segundos = useContext(TimeContext);
+const materia = useContext(MateriaSelecionada)
 const [quantidadeSec, setQuantidadeSec] = useState(segundos[0]);
 const workerRef = useRef(null);
 
@@ -38,6 +39,7 @@ useEffect(()=>{
       date: new Date(),
       userId: userId,
       segundos: segundos[0],
+      materia
     })
     .then(function (response) {
       console.log(response);
@@ -112,6 +114,7 @@ function select(num,event, flagSeFoiExecutadoPeloBotão){
       date: new Date(),
       userId: userId,
       segundos: segundos[0] - quantidadeSec,
+      materia
     })
     .then(function (response) {
       console.log(response);
