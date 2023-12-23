@@ -39,6 +39,7 @@ function toastActive(e){
         <SelectItem value="Leitura">Leitura</SelectItem>
         <SelectItem value="Empreendedorerismo">Empreendedorismo</SelectItem>
         <SelectItem value="Finanças">Finanças</SelectItem>
+        <SelectItem value="Projeto">Projeto</SelectItem>
     </SelectContent>
     </Select>
 
