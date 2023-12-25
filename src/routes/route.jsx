@@ -19,8 +19,6 @@ async function paternLoader({params, request}){
     return redirect('/login')
   }
 
-
-
 }
 
 const router = createBrowserRouter([
