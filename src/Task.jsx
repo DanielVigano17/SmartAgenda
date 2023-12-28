@@ -1,6 +1,6 @@
 import styles from './CSS/body.module.css'
 import { useState, useEffect} from 'react'
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData,useNavigation } from 'react-router-dom'
 import './CSS/main.css'
 import Timer from './Timer'
 import Modal from './Modal'
@@ -8,6 +8,7 @@ import initAOS from './utils/aosConfig'
 
 function Pomo(props) {
   
+ const navigation = useNavigation();
  const [tarefas,setTarefas] = useState([])
  const [isRendered, setIsRendered] = useState(false);
  const [inputValue, setInputValue] = useState('');
@@ -85,7 +86,9 @@ const removerTarefa = (index)=>{
 }
 
     return (
-     <div className= {styles.container}>
+     <div className={
+      navigation.state === "loading" ? "desaparecer" : styles.container
+    }>
 
         <Timer />  
         <div data-aos="fade-left" className={styles.task}>

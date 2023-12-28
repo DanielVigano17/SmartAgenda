@@ -4,14 +4,15 @@ import Header from './components/Header'
 import Nav from './components/Nav'
 import { createContext,useEffect,useState }  from 'react';
 import Pomo from './Task'
-import { Outlet } from 'react-router-dom';
-import { useLoaderData } from 'react-router-dom';
+import { Outlet,useLoaderData, useNavigation } from 'react-router-dom';
+import Loading from './components/Loading';
 export const TimeContext = createContext(null);
 export const MateriaSelecionada = createContext(null);
 import { Toaster } from "@/components/ui/toaster"
 
 function App() {
 
+  const navigation = useNavigation();
   const user = useLoaderData();
 
   const [segundos, setSegundos] = useState(localStorage.getItem('timers') ? JSON.parse(localStorage.getItem('timers')) : [1500,300,900]);
@@ -30,10 +31,11 @@ function App() {
       <Nav setSegundos={setSegundos}/>
 
       <div className='content'>
-
+ 
       <Header setMateria={setMateria}/>
       <Toaster/>
-      <Outlet context={[user.uid]}/>
+
+      {navigation.state === "loading" ? <Loading/> : <Outlet context={[user.uid]} />}
       
       </div>
 
