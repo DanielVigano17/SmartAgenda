@@ -4,10 +4,12 @@ import { auth } from "../utils/firebaseConfig";
 import App from '../App'
 import Pomo from '../Task'
 import Stats from '../Pages/Stats'
+import ListaMaterias, { LoaderMateria } from '../Pages/ListaMaterias';
 import { statsLoader } from '../Pages/Stats'
 import {Login, loginAction, loginLoader} from '../Pages/Login'
 import {PageCadastro, cadastroAction, cadastroLoader} from '../Pages/Cadastro'
 import { authVerification } from '../utils/authVerification';
+import Materia from '../Pages/materia';
 
 
 async function paternLoader({params, request}){
@@ -43,6 +45,17 @@ const router = createBrowserRouter([
                 loader: statsLoader,
                
             },
+            {
+                path:'/lista-materias/',
+                element:<ListaMaterias/>,
+                loader:LoaderMateria,
+            },
+            {
+                path:'materia/:nameMateria',
+                element:<Materia/>,
+                
+            }
+
         ],
     },{
         path: '/login',

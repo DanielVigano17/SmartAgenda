@@ -41,3 +41,11 @@
     padding: 5px; /* espaçamento interno para as opções */
     border-bottom: 1px solid #ddd; 
 }
+
+
+/* Botão de criar matéria no Header está sendo estilizado aqui  */
+
+.novaMateria{
+    max-width: 13rem;
+    height: 3.1rem;
+}

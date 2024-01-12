@@ -1,4 +1,3 @@
-import { useState,useEffect } from 'react'
 import '../CSS/Header.css'
 import style from '../CSS/select.module.css'
 import {
@@ -10,11 +9,9 @@ import {
 } from "@/components/ui/select"
 import { useToast } from "@/components/ui/use-toast"
 
-function Header(props) {
+
+const SelectButton = (props) =>{
 const { toast } = useToast()
-
-
-
 
 function toastActive(e){
   props.setMateria(e)
@@ -24,12 +21,7 @@ function toastActive(e){
   })
 }
 
-  return (
-    <div className='main'>
-     <div className="container-header">
-      <h3>Bem-Vindo de volta ao SmartStudy</h3>
-
-
+  return(
     <Select onValueChange={(e)=>{toastActive(e)}}>
     <SelectTrigger className={style.select}>
         <SelectValue placeholder="Matéria" />
@@ -42,8 +34,22 @@ function toastActive(e){
         <SelectItem value="Projeto">Projeto</SelectItem>
     </SelectContent>
     </Select>
+  )
+}
 
- 
+
+function Header(props) {
+
+
+  return (
+    <div className='main'>
+     <div className="container-header">
+      <h3>Bem-Vindo de volta ao SmartStudy</h3>
+
+      {
+        window.location.pathname === "/lista-materias/" ? <button className={style.novaMateria}>Nova matéria</button> : <SelectButton setMateria={props.setMateria}/>
+      }
+
 
      </div>
     </div>

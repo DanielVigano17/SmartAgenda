@@ -51,6 +51,9 @@ function Nav(props) {
           <li>
           <Link to="/estatisticas/1" className={styles.list_button}><img src="/grafico-icon.svg" alt="" /></Link>
           </li>
+          <li>
+          <Link to="/lista-materias/" className={styles.list_button}><img src="/book-icon.svg" alt="" /></Link>
+          </li>
         </ul>
 
         <button className={styles.list_button} onClick={toggle}><img src="/config-icon.svg" alt="" /></button>

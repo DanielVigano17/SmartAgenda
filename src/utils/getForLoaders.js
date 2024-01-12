@@ -26,3 +26,27 @@ export async function getTime(intervaloDeDias){
     
 
 }
+
+export async function listMaterias(intervaloDeDias){
+  
+  const userId = await authVerification()
+
+  const response = await axiosInstance.post(`/listMateria/`, {
+
+      userId: userId.uid
+
+    })
+    .then(function (response) {
+      console.log(response);
+
+      return response.data
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  
+  
+  return response
+  
+
+}
