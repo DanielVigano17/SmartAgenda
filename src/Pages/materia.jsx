@@ -1,4 +1,31 @@
+import { redirect } from "react-router-dom"
 import style from "../CSS/materia.module.css"
+import useMateria from "../customHooks/useMateria"
+
+export const createMateria = async ({params,request}) =>{
+
+    const {createMateria} = useMateria();
+
+    const formData = await request.formData()
+
+        
+        console.log(formData.get('nameMateria'))
+        await createMateria(formData.get('nameMateria'))
+
+
+    return redirect('/lista-materias/')
+ 
+}
+
+export const deleteMateria = async ({params}) =>{
+    const {deleteMateria} =  useMateria();
+
+        console.log(params.idMateria)
+        await deleteMateria(Number(params.idMateria))
+
+    return redirect('/lista-materias/')
+ 
+}
 
 const Materia = () =>{
 

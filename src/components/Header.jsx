@@ -7,11 +7,48 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useToast } from "@/components/ui/use-toast"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
+import { useToast } from "@/components/ui/use-toast"
+import { DialogFooter } from './ui/dialog'
+import { Form, useLoaderData } from 'react-router-dom'
+
+
+const DialogButton = () =>{
+
+  return(
+  <Dialog>
+    <DialogTrigger className={"execShadcn " + style.novaMateria}>Nova matéria</DialogTrigger>
+    <DialogContent>
+      <div className={style.contentForm}>
+    <DialogHeader>
+        <DialogTitle>Criando nova matéria</DialogTitle>
+        <DialogDescription>
+          Preencha o campo abaixo com o nome da matéria que deseja criar e depois clique no botão criar.
+        </DialogDescription>
+    </DialogHeader>
+    <Form method='post' action='/materia/create'>
+      <label>Nome da matéria</label>
+      <input type="text" name='nameMateria'/>
+      <button type='submit'>Criar</button>
+    </Form>
+      </div>
+  </DialogContent>
+</Dialog>
+  )
+}
 
 const SelectButton = (props) =>{
-const { toast } = useToast()
+const { toast } = useToast();
+
+const materias = useLoaderData();
 
 function toastActive(e){
   props.setMateria(e)
@@ -27,11 +64,13 @@ function toastActive(e){
         <SelectValue placeholder="Matéria" />
     </SelectTrigger>
     <SelectContent>
-        <SelectItem value="Programação">Programação</SelectItem>
-        <SelectItem value="Leitura">Leitura</SelectItem>
-        <SelectItem value="Empreendedorerismo">Empreendedorismo</SelectItem>
-        <SelectItem value="Finanças">Finanças</SelectItem>
-        <SelectItem value="Projeto">Projeto</SelectItem>
+        {
+          materias.map((objeto)=>(
+
+            <SelectItem value={objeto.nameMateria} key={objeto.id}>{objeto.nameMateria}</SelectItem>
+          ))
+        }
+
     </SelectContent>
     </Select>
   )
@@ -47,7 +86,7 @@ function Header(props) {
       <h3>Bem-Vindo de volta ao SmartStudy</h3>
 
       {
-        window.location.pathname === "/lista-materias/" ? <button className={style.novaMateria}>Nova matéria</button> : <SelectButton setMateria={props.setMateria}/>
+        window.location.pathname === "/lista-materias/" ? <DialogButton>Nova matéria</DialogButton> : <SelectButton setMateria={props.setMateria}/>
       }
 
 

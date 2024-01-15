@@ -9,14 +9,18 @@ import { statsLoader } from '../Pages/Stats'
 import {Login, loginAction, loginLoader} from '../Pages/Login'
 import {PageCadastro, cadastroAction, cadastroLoader} from '../Pages/Cadastro'
 import { authVerification } from '../utils/authVerification';
-import Materia from '../Pages/materia';
+import Materia, { createMateria, deleteMateria } from '../Pages/materia';
+import useMateria from '../customHooks/useMateria';
 
 
 async function paternLoader({params, request}){
 
   const isLogged = await authVerification()
   if(isLogged){
-    return isLogged
+    const {listMaterias} =useMateria();
+
+    const materias = await listMaterias();
+    return materias
   }else{
     return redirect('/login')
   }
@@ -49,6 +53,16 @@ const router = createBrowserRouter([
                 path:'/lista-materias/',
                 element:<ListaMaterias/>,
                 loader:LoaderMateria,
+            },
+            {
+                path:'materia/:idMateria/delete',
+                action:deleteMateria,
+
+            },
+            {
+                path:'/materia/create',
+                action:createMateria,
+
             },
             {
                 path:'materia/:nameMateria',

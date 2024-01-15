@@ -10,6 +10,6 @@ export default defineConfig({
     },
   },
   server: {
-    host: '0.0.0.0', // Ou use o IP local do seu computador
+    host: '0.0.0.0', 
   },
 })

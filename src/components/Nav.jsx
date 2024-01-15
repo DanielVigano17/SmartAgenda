@@ -43,7 +43,7 @@ function Nav(props) {
      <div className={styles.container}>
         <ul>
           <li>
-          <Link to="/" className={styles.list_button}><img src="/home-icon.svg" alt="" /></Link>
+          <Link to="/" reloadDocument className={styles.list_button}><img src="/home-icon.svg" alt="" /></Link>
           </li>
           <li>
           <Link to="/agenda" className={styles.list_button}><img src="/calendar-icon.svg" alt="" /></Link>
