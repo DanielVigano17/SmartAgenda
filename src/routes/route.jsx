@@ -4,12 +4,12 @@ import { auth } from "../utils/firebaseConfig";
 import App from '../App'
 import Pomo from '../Task'
 import Stats from '../Pages/Stats'
-import ListaMaterias, { LoaderMateria } from '../Pages/ListaMaterias';
+import ListaMaterias, { LoaderMateria,deleteMateria,createMateria } from '../Pages/ListaMaterias';
 import { statsLoader } from '../Pages/Stats'
 import {Login, loginAction, loginLoader} from '../Pages/Login'
 import {PageCadastro, cadastroAction, cadastroLoader} from '../Pages/Cadastro'
 import { authVerification } from '../utils/authVerification';
-import Materia, { createMateria, deleteMateria } from '../Pages/materia';
+import Materia, { createTask, deleteTask, loaderTaskData } from '../Pages/materia';
 import useMateria from '../customHooks/useMateria';
 
 
@@ -65,9 +65,17 @@ const router = createBrowserRouter([
 
             },
             {
-                path:'materia/:nameMateria',
+                path:'/materia/:materiaId',
                 element:<Materia/>,
-                
+                loader:loaderTaskData,
+            },
+            {
+                path:'/createTask',
+                action:createTask,
+            },
+            {
+                path:"/deleteTask/:taskId",
+                action:deleteTask,
             }
 
         ],

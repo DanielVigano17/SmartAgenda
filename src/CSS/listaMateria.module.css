@@ -45,3 +45,8 @@
     transform: scale(0.97);
     transition: 0.2s linear;
 }
+
+.text_toast{
+    text-transform: uppercase;
+    color: var(--text--color)
+}

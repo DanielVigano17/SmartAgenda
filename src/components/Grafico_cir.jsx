@@ -1,8 +1,7 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { useEffect } from 'react';
+import { Chart as ChartJS, ArcElement, Tooltip,Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip);
+ChartJS.register(ArcElement, Tooltip,Legend);
 
 
 
@@ -31,8 +30,23 @@ const Grafico_circulo = (props) =>{
 
   }
 
+  const options = {
+   plugins:{
+    legend:{
+      display:true,
+      position:'bottom',
+      labels: {
+        padding: 20 // ajuste o valor conforme necessário
+    }
+    }
+   }
+  };
+
  const data = {
-    labels: [],
+  legend:{
+    display:false,
+  },
+    labels: false,
     datasets: [
       {
         label: 'Minutos de estudo',
@@ -67,7 +81,7 @@ const Grafico_circulo = (props) =>{
     data.labels = props.nomeMaterias
     data.datasets[0].data = transformarEmMinutos(props.tempoMaterias)
 
-    return <Doughnut data={data} />;
+    return <Doughnut data={data} options={options}/>;
     
 }
 

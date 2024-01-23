@@ -16,14 +16,15 @@ const useMateria = ()=>{
           .then(function (response) {
             
       
-            return new Promise((resolve,reject)=>{
+            return new Promise((resolve)=>{
               setTimeout(()=>{
                 resolve(response.data)
               },3000)
             })
           })
           .catch(function (error) {
-            console.log(error);
+            
+            throw new Error(error)
           });
         
         
@@ -57,7 +58,7 @@ const useMateria = ()=>{
       
       }
 
-      async function listMaterias(intervaloDeDias){
+      async function listMaterias(){
   
         const userId = await authVerification()
       
@@ -81,10 +82,36 @@ const useMateria = ()=>{
       
       }
 
+      async function getLastWeekTime(materiaId){
+  
+        const userId = await authVerification()
+      
+        const response = await axiosInstance.post(`/getLastWeekTimes/`, {
+      
+            userId: userId.uid,
+            materiaId:Number(materiaId),
+      
+          })
+          .then(function (response) {
+            
+            
+            return response.data
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        
+        
+        return response
+        
+      
+      }
+
     return{
         createMateria,
         deleteMateria,
         listMaterias,
+        getLastWeekTime,
     }
 
 }

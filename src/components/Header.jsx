@@ -18,13 +18,38 @@ import {
 
 import { useToast } from "@/components/ui/use-toast"
 import { DialogFooter } from './ui/dialog'
-import { Form, useLoaderData } from 'react-router-dom'
+import { Form, useLoaderData, useFetcher, useActionData } from 'react-router-dom'
+import { useEffect } from 'react'
 
 
 const DialogButton = () =>{
+ 
+  const { toast } = useToast();
+  const fetcher = useFetcher();
 
+  function toastActive(e){
+    if(fetcher.data && fetcher.state === "idle"){
+      console.log(fetcher.data)
+      return toast({
+        title: "Matéria criada com sucesso",
+        description:<span>Você criou uma nova matéria com o nome de <span className={style.text_toast}>{fetcher.data.nameMateria}</span> </span>,
+      })
+    }
+    return null
+  }
+
+  useEffect(()=>{
+    toastActive();
+
+
+  },[fetcher])
+
+  
   return(
-  <Dialog>
+
+    <>
+    
+    <Dialog>
     <DialogTrigger className={"execShadcn " + style.novaMateria}>Nova matéria</DialogTrigger>
     <DialogContent>
       <div className={style.contentForm}>
@@ -34,14 +59,16 @@ const DialogButton = () =>{
           Preencha o campo abaixo com o nome da matéria que deseja criar e depois clique no botão criar.
         </DialogDescription>
     </DialogHeader>
-    <Form method='post' action='/materia/create'>
+    <fetcher.Form method='post' action='/materia/create'>
       <label>Nome da matéria</label>
       <input type="text" name='nameMateria'/>
       <button type='submit'>Criar</button>
-    </Form>
+    </fetcher.Form>
       </div>
   </DialogContent>
 </Dialog>
+</>
+
   )
 }
 
@@ -78,7 +105,6 @@ function toastActive(e){
 
 
 function Header(props) {
-
 
   return (
     <div className='main'>
