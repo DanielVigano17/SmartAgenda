@@ -17,7 +17,6 @@ function App() {
 
   const [segundos, setSegundos] = useState(localStorage.getItem('timers') ? JSON.parse(localStorage.getItem('timers')) : [1500,300,900]);
   const [materia, setMateria]= useState(null);
-  console.log(materia)
   
   useEffect(()=>{
     localStorage.setItem('timers', JSON.stringify(segundos));

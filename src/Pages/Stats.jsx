@@ -75,7 +75,7 @@ const Stats = () => {
             <ul className={styles.info}>
                 <li  data-aos="zoom-in">
                     <p>Tempo de estudo :</p>
-                    <h3>{segundos >= 3600 ? criaHora(segundos,false,true) + "h" : criaHora(segundos,false,false)+ "min"}</h3>
+                    <h3>{segundos >= 3600 ? criaHora(segundos,false,false) + "h" : criaHora(segundos,false,false)+ "min"}</h3>
                 </li>
                 <li  data-aos="zoom-in">
                     <p>{mudarTexto(intervaloDeDias)}</p>

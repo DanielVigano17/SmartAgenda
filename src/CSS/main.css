@@ -5,6 +5,7 @@
 :root{
     --cor--principal: #0E0024;
     --cor--secundaria: #1D0737;
+    --cor--terciaria:#12022D;
     --text--color: hsl(0, 0%, 100%);
     --text--gray--color:#b6b6b696;
     --cor--btn: #532184;
@@ -83,7 +84,7 @@ p{
   font-weight: 700;
 }
 
-button, [type='submit']{
+button, [type='submit'], .execShadcn{
     padding: 0;
     font-family: 'Roboto', sans-serif;
     font-style: normal;

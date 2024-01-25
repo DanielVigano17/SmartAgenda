@@ -1,0 +1,171 @@
+.infos{
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    margin-bottom: 3.8rem;
+    max-width: 100%;
+    width: 100%;
+
+}
+.container{
+    padding-left: 4.5rem;
+}
+
+.meta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 50rem;
+    min-width: 30rem;
+    width: 100%;
+    height: 32.6rem;
+    background-color: var(--cor--terciaria);
+    padding: 3.2rem;
+    border-radius: 1rem;
+}
+
+.meta div{
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
+}
+.meta h2{
+    display: flex;
+    align-items: center;
+    max-height: 100%;
+    height: 100%;
+    font-size: 9.6rem;
+    color: #05FF00;
+}
+.meta button{
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grafico{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    height: 32.6rem;
+    background-color: var(--cor--terciaria);
+    padding: 3.2rem;
+    border-radius: 1rem;
+}
+.grafico p {
+    width: 100%;
+}
+.chartComponent{
+    max-width: 100%;
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkList{
+    max-width: 100%;
+    width: 100%;
+    background-color: var(--cor--terciaria);
+    border-radius: 1rem;
+    min-height: 40rem;
+    padding: 4rem;
+}
+.lineCheckList{
+    display: block;
+    height: 6.3rem;
+    width: 0.3rem;
+    background-color: var(--cor--btn);
+    margin-left: 12px;
+    box-shadow: 0px 5px 10px 2px #532184;
+}
+.checkList ul li{
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+.checkList button{
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 100%;
+}
+.itemList{
+    display: flex;
+    align-items: center;
+    padding: 0 5.5rem;
+    justify-content: space-between;
+    max-width: 95%;
+    width: 100%;
+    height: 6.5rem;
+    border-radius: 0.7rem;
+    border-right: 3px solid #532184;
+    border-left: 3px solid #532184;
+    background: rgba(83, 33, 132, 0.11);
+
+}
+
+.trash{
+    min-width: 3.3rem;
+    width: 3.3rem;
+    height: 3.3rem;
+    border-radius: 3px;
+    border: 1px solid rgba(246, 0, 0, 0.78);
+    background: rgba(231, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+}
+.trash:hover{
+    transform: scale(0.97);
+    transition: 0.2s linear;
+}
+
+
+@media (max-width: 1549px){
+
+    .chartComponent{
+        max-width: 60rem;
+    }
+}
+
+@media (max-width: 1076px){
+
+    .chartComponent{
+        max-width: 34rem;
+    }
+}
+
+@media (max-width: 829px){
+
+   .infos{
+     flex-direction: column;
+   }
+   .meta{
+    max-width: 100%;
+   }
+   .chartComponent{
+    max-width: 40rem;
+}
+}
+
+@media (max-width : 730px){
+    .container{
+      padding-left: 4.2rem;
+    }
+  }
+  
+
+  @media (max-width : 550px){
+    .container{
+      padding-inline: 2.2rem;
+    }
+  }
