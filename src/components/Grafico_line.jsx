@@ -40,6 +40,7 @@ export const options = {
       },
     },
     y: {
+      beginAtZero: true,
       grid: {
         color: 'rgba(255, 255, 255, 0.1)', // Cor das linhas de grade no eixo y
       },
@@ -58,14 +59,14 @@ export const options = {
 
 export function Grafico_line({timeInfo}){
 
-  const labels = timeInfo.map(objeto => objeto.date.slice(0,5));
+  const labels = timeInfo.map(objeto => objeto.date.slice(0,5)).reverse();
 
   const data = {
 
     labels: labels,
     datasets: [{
       label: 'Tempo em minutos',
-      data: timeInfo.map(objeto => Math.round(objeto.segundos/60)),
+      data: timeInfo.map(objeto => Math.round(objeto.segundos/60)).reverse(),
       fill: {
           target: 'origin',
           above: 'rgba(75, 192, 192,0.1)',   // Area will be red above the origin

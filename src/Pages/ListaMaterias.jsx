@@ -45,7 +45,6 @@ export const LoaderMateria = async ({params}) =>{
      const {listMaterias} = useMateria();
 
      const materias = await listMaterias()
-    
      return materias || null
 }
 

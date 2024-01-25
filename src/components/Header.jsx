@@ -15,10 +15,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-
 import { useToast } from "@/components/ui/use-toast"
-import { DialogFooter } from './ui/dialog'
-import { Form, useLoaderData, useFetcher, useActionData } from 'react-router-dom'
+import { useLoaderData, useFetcher, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
@@ -103,16 +101,63 @@ function toastActive(e){
   )
 }
 
+function MudaConteudoHeader(props){
+  const {materiaId} = useParams();
+  const loaderData = useLoaderData();
+  const caminhoAtual = window.location.pathname;
+  const fetcher = useFetcher();
+
+  console.log(loaderData)
+
+  useEffect(()=>{
+    if (caminhoAtual.includes("/materia/")) {
+      
+    fetcher.load("/lista-materias/")
+  
+    }
+  },[caminhoAtual])
+
+    if(caminhoAtual.includes("/materia/")){
+      console.log(materiaId)
+      return(
+        loaderData.map(object => (
+          object.id == materiaId ? <h2 key={object.nameMateria} className={style.nameMateria}>{object.nameMateria}</h2> : null
+        ))
+      )
+    }else if(caminhoAtual.includes("/lista-materias/")){
+      return (
+        <>
+        <h3>Bem-Vindo de volta ao SmartStudy</h3>
+        <DialogButton>Nova matéria</DialogButton>
+        </>
+      )
+    }else{
+      return (
+        <>
+        <h3>Bem-Vindo de volta ao SmartStudy</h3>
+        <SelectButton setMateria={props.setMateria}/>
+        </>
+      )
+    }
+
+    return(
+      <h1>Olá</h1>
+    )
+
+}
+
 
 function Header(props) {
+
 
   return (
     <div className='main'>
      <div className="container-header">
-      <h3>Bem-Vindo de volta ao SmartStudy</h3>
+      
 
       {
-        window.location.pathname === "/lista-materias/" ? <DialogButton>Nova matéria</DialogButton> : <SelectButton setMateria={props.setMateria}/>
+        // window.location.pathname === "/lista-materias/" ? <DialogButton>Nova matéria</DialogButton> : <SelectButton setMateria={props.setMateria}/>
+        <MudaConteudoHeader setMateria={props.setMateria}/>
       }
 
 

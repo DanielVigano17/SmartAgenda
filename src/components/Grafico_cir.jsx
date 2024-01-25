@@ -33,7 +33,7 @@ const Grafico_circulo = (props) =>{
   const options = {
    plugins:{
     legend:{
-      display:true,
+      display:false,
       position:'bottom',
       labels: {
         padding: 20 // ajuste o valor conforme necessário

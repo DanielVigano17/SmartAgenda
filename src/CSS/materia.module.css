@@ -2,11 +2,14 @@
     display: flex;
     gap: 3rem;
     justify-content: space-between;
-    margin-top: 6.5rem;
+    margin-top: 1.5rem;
     margin-bottom: 3.8rem;
     max-width: 100%;
     width: 100%;
 
+}
+.container{
+    padding-left: 4.5rem;
 }
 
 .meta{
