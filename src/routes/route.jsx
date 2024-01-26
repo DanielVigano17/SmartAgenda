@@ -18,7 +18,7 @@ async function paternLoader({params, request}){
   const isLogged = await authVerification()
   if(isLogged){
     const {listMaterias} =useMateria();
-
+    console.log("Passei aqui")
     const materias = await listMaterias();
     return materias
   }else{

@@ -8,6 +8,7 @@ import { axiosInstance }  from './utils/axiosConfig'
 import { authVerification } from './utils/authVerification'
 import { useOutletContext } from 'react-router-dom'
 import initAOS from './utils/aosConfig'
+import useTime from './customHooks/useTime'
 
 function Timer(props){
 
@@ -21,6 +22,7 @@ const workerRef = useRef(null);
 
 
 function activeAudio(){
+  
 const audioElement = document.querySelector('#audio')
 audioElement.play();
 }
@@ -34,20 +36,9 @@ useEffect(()=>{
   const spans = document.querySelectorAll('.minutes_select')
 
   if(spans[0].classList.contains(styles.selected_timer) && quantidadeSec === 1){
-    axiosInstance.post('/update', {
-
-      date: new Date(),
-      userId: userId,
-      segundos: segundos[0],
-      materia
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  
+    const {updateTime} = useTime();
+    updateTime({segundos:segundos[0],nameMateria:materia});
+ 
    }
   
 },[quantidadeSec])
@@ -102,6 +93,7 @@ const toggle = () => {
 }
 
 function select(num,event, flagSeFoiExecutadoPeloBotão){
+  const {updateTime} = useTime();
 
   const spans = document.querySelectorAll('.minutes_select')
 
@@ -109,20 +101,8 @@ function select(num,event, flagSeFoiExecutadoPeloBotão){
   const selected_span = event ? event.target : spans[num]
 
   if(spans[0].classList.contains(styles.selected_timer) && quantidadeSec !== segundos[0] && quantidadeSec !== 1 && flagSeFoiExecutadoPeloBotão){
-    axiosInstance.post('/update', {
-      
-      date: new Date(),
-      userId: userId,
-      segundos: segundos[0] - quantidadeSec,
-      materia
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
+    updateTime({segundos: segundos[0] - quantidadeSec,nameMateria:materia});
+   
   }
   
   spans.forEach(element => {
