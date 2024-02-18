@@ -15,9 +15,9 @@ const useTime = ()=>{
             materia:nameMateria,
             
           })
-          .then(function (response) {
+          .then(async function (response) {
             
-      
+            
             return new Promise((resolve)=>{
               setTimeout(()=>{
                 resolve(response.data)

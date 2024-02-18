@@ -12,7 +12,6 @@ import useTime from './customHooks/useTime'
 
 function Timer(props){
 
-const [userId] = useOutletContext()
 const [isActive, setIsActive] = useState(false);
 const segundos = useContext(TimeContext);
 const materia = useContext(MateriaSelecionada)
@@ -38,7 +37,7 @@ useEffect(()=>{
   if(spans[0].classList.contains(styles.selected_timer) && quantidadeSec === 1){
     const {updateTime} = useTime();
     updateTime({segundos:segundos[0],nameMateria:materia});
- 
+    
    }
   
 },[quantidadeSec])
@@ -87,7 +86,13 @@ if(quantidadeSec === 0){
 }
 
 const toggle = () => {
-      setIsActive(!isActive) 
+     
+  if(!materia && isActive == false){
+    confirm("Você realmete deseja iniciar o timer sem selecionar uma matéria ?") ? setIsActive(!isActive) : null
+    
+  }else{
+    setIsActive(!isActive)
+  } 
 
 
 }

@@ -13,7 +13,6 @@ import { Toaster } from "@/components/ui/toaster"
 function App() {
 
   const navigation = useNavigation();
-  const user = useLoaderData();
 
   const [segundos, setSegundos] = useState(localStorage.getItem('timers') ? JSON.parse(localStorage.getItem('timers')) : [1500,300,900]);
   const [materia, setMateria]= useState(null);
@@ -21,7 +20,7 @@ function App() {
   useEffect(()=>{
     localStorage.setItem('timers', JSON.stringify(segundos));
   },[segundos])
-
+  
   return (
   <TimeContext.Provider value={segundos}>
     <MateriaSelecionada.Provider value={materia}>
@@ -34,7 +33,7 @@ function App() {
       <Header setMateria={setMateria}/>
       <Toaster/>
 
-      {navigation.state === "loading" ? <Loading/> : <Outlet context={[user.uid]} />}
+      {navigation.state === "loading" ? <Loading/> : <Outlet />}
       
       </div>
 

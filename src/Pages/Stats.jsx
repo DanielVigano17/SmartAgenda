@@ -5,14 +5,23 @@ import { getTime } from '../utils/getForLoaders';
 import criaHora from '../utils/criaHora';
 import Grafico_circulo from '../components/Grafico_cir';
 import initAOS from '../utils/aosConfig';
+import { useQuery } from 'react-query';
+
+const getTimeQuery = (intervaloDeDias) => ({
+  queryKey: ['time',intervaloDeDias],
+  queryFn: async () => getTime(intervaloDeDias),
+})
 
 
-export async function statsLoader({params}){
-
-    const response = await getTime(params.intervaloDeDias)
-
-    console.log(response)
-    return response || null
+export const statsLoader=
+(queryClient) => async ({params})=>
+{
+    const query = getTimeQuery(params.intervaloDeDias)
+    // const response = await getTime(params.intervaloDeDias)
+    return (
+      queryClient.getQueryData(query.queryKey) ??
+      (await queryClient.fetchQuery(query))
+    )
 }
 
 const Stats = () => {
@@ -20,10 +29,11 @@ const Stats = () => {
   const {segundos, segundosDiaAnterior, materiaMaisEstudada, nomesMaterias, tempoMaterias} = useLoaderData() || {segundos:0, segundosDiaAnterior:0}
 
   let {intervaloDeDias} = useParams()
+  const {data} = useQuery(getTimeQuery(intervaloDeDias));
+  console.log('Renderizei tela de status');
 
   useEffect(()=>{
     initAOS()
-    console.log('Passei aqui')
   },[intervaloDeDias])
 
   function mudarTexto(intervaloDeDias){
@@ -50,7 +60,7 @@ const Stats = () => {
       }
 
       const valor = ((minutos-minutosDiaAnterior2) / minutosDiaAnterior2) 
-      console.log(valor)
+
       if(valor < 1){
             return (valor.toFixed(2) * 100).toFixed(0)
       }else if(valor >= 1){

@@ -72,8 +72,8 @@ const DialogButton = () =>{
 
 const SelectButton = (props) =>{
 const { toast } = useToast();
-
 const materias = useLoaderData();
+
 
 function toastActive(e){
   props.setMateria(e)
@@ -103,24 +103,13 @@ function toastActive(e){
 
 function MudaConteudoHeader(props){
   const {materiaId} = useParams();
-  const loaderData = useLoaderData();
+  const materias = useLoaderData();
   const caminhoAtual = window.location.pathname;
-  const fetcher = useFetcher();
-
-  console.log(loaderData)
-
-  useEffect(()=>{
-    if (caminhoAtual.includes("/materia/")) {
-      
-    fetcher.load("/lista-materias/")
-  
-    }
-  },[caminhoAtual])
 
     if(caminhoAtual.includes("/materia/")){
-      console.log(materiaId)
+      
       return(
-        loaderData.map(object => (
+        materias.map(object => (
           object.id == materiaId ? <h2 key={object.nameMateria} className={style.nameMateria}>{object.nameMateria}</h2> : null
         ))
       )
@@ -131,18 +120,20 @@ function MudaConteudoHeader(props){
         <DialogButton>Nova matéria</DialogButton>
         </>
       )
-    }else{
+    }else if(caminhoAtual == '/'){
       return (
         <>
         <h3>Bem-Vindo de volta ao SmartStudy</h3>
         <SelectButton setMateria={props.setMateria}/>
         </>
       )
+    }else{
+      return(
+        <>
+        <h3>Bem-Vindo de volta ao SmartStudy</h3>
+        </>
+      )
     }
-
-    return(
-      <h1>Olá</h1>
-    )
 
 }
 

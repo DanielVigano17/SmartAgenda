@@ -3,12 +3,23 @@ import { Form, Link, useLoaderData, useFetcher } from "react-router-dom";
 import useMateria from "../customHooks/useMateria";
 import { useToast } from "@/components/ui/use-toast"
 import { useEffect } from "react";
+import { useQuery } from "react-query";
+
+const {listMaterias} = useMateria();
+
+const listMateriasQuery = () => ({
+    queryKey: 'materias',
+    queryFn: async () => listMaterias(),
+    staleTime: "Infinity",
+
+  })
+  
 
 
-export const createMateria = async ({params,request}) =>{
+export const createMateria = (queryClient) =>async ({params,request}) =>{
 
     const {createMateria} = useMateria();
-
+    const query = listMateriasQuery();
     const formData = await request.formData()
 
         
@@ -16,36 +27,43 @@ export const createMateria = async ({params,request}) =>{
         let result
         try{
             result = await createMateria(formData.get('nameMateria'))
+            await queryClient.fetchQuery(query)
         }catch(error){
             return error
         }
         
-
+    
     return result
  
 }
 
-export const deleteMateria = async ({params}) =>{
+export const deleteMateria = (queryClient) => async ({params}) =>{
     const {deleteMateria} =  useMateria();
-        
+    const query = listMateriasQuery();
     let result
     try{
-        result = await await deleteMateria(Number(params.idMateria))
+        result = await deleteMateria(Number(params.idMateria))
+       
     }catch(error){
+        console.log(error)
         return error
     }
     
-
+await queryClient.fetchQuery(query)
 return result
  
 }
 
 
-export const LoaderMateria = async ({params}) =>{
-     const {listMaterias} = useMateria();
-
-     const materias = await listMaterias()
-     return materias || null
+export const LoaderMateria = (queryClient) => async ({params}) =>{
+     
+     const query = listMateriasQuery();
+   
+    console.log('Passei no loader')
+     return (
+        queryClient.getQueryData(query.queryKey) ??
+        (await queryClient.fetchQuery(query))
+      )
 }
 
 
@@ -54,12 +72,10 @@ const ListaMaterias = ()=>{
     const {toast} = useToast();
     const fetcher = useFetcher();
     const materias = useLoaderData();
-    
+
     function toastActive(){
         
         if(fetcher.data && fetcher.state === "idle"){
-            
-            console.log('Passei')
             return toast({
               title: "Matéria excluida com sucesso",
               description:<span>Você excluiu uma  matéria com o nome de <span className={style.text_toast}>{fetcher.data.nameMateria}</span> </span>,
