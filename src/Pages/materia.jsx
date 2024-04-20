@@ -46,11 +46,14 @@ export const deleteTask = async ({params})=>{
 }
 
 export const loaderTaskData = async  ({params})=>{
+    const {listMaterias} = useMateria();
     const {listTasks} = useTask();
     const {getLastWeekTime} = useMateria();
-    let response = { lista:{}, time:{} }
+    let response = { nameMateria:"", lista:{}, time:{} }
       
     try{
+    const materias = await listMaterias();
+    response.nameMateria = materias.filter(materia => materia.id == params.materiaId)
     response.lista = await listTasks(params.materiaId);
 
     response.time = await getLastWeekTime(params.materiaId)

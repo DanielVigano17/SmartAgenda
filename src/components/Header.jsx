@@ -102,15 +102,13 @@ function toastActive(e){
 
 function MudaConteudoHeader(props){
   const {materiaId} = useParams();
-  const materias = useLoaderData();
+  const materias = useRouteLoaderData("loaderTaskDataAndTime");
   const caminhoAtual = window.location.pathname;
 
     if(caminhoAtual.includes("/materia/")){
       
       return(
-        materias.map(object => (
-          object.id == materiaId ? <h2 key={object.nameMateria} className={style.nameMateria}>{object.nameMateria}</h2> : null
-        ))
+        <h2>{materias.nameMateria[0].nameMateria}</h2>
       )
     }else if(caminhoAtual.includes("/lista-materias/")){
       return (

@@ -92,6 +92,7 @@ const router = createBrowserRouter([
             {
                 path:'/materia/:materiaId',
                 element:<Materia/>,
+                id:"loaderTaskDataAndTime",
                 loader:loaderTaskData,
             },
             {
