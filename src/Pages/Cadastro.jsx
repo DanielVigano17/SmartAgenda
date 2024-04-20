@@ -1,6 +1,6 @@
 import React from 'react'
 import style from '../CSS/login.module.css'
-import { Form, Link, redirect } from 'react-router-dom'
+import { Form, Link, redirect, useActionData } from 'react-router-dom'
 import { postCadastro } from '../utils/auth'
 import { authVerification } from '../utils/authVerification'
 
@@ -8,7 +8,7 @@ export async function cadastroLoader({params,request}){
   
   const isLogged = await authVerification()
   if(isLogged){
-    return redirect('/')
+    return redirect('/home')
   }else{
     return null
   }
@@ -22,14 +22,16 @@ try{
   const statusCadastro = await postCadastro(formData.get('email'), formData.get('password'))
 }catch(err){
   console.error(err)
-  return null
+  return "Desculpe, não foi possível concluir o cadastro com suas credenciais"
 }
 
-return redirect('/')
+return redirect('/home')
     
 }
 
 export const PageCadastro = () => {
+  const possivelLoginErro = useActionData()
+
   return (
     <div className={style.container}>
 
@@ -39,8 +41,10 @@ export const PageCadastro = () => {
             <input type="email" name='email' />
             
             <label>Password :</label>
-            <input type="text" name='password' />
-
+            <input type="password" name='password' />
+            {
+              possivelLoginErro ? <p className={style.login_erro}>{possivelLoginErro}</p> : null
+            }
             <button type='submit'>Cadastrar</button>
 
             <p>Já possui uma conta cadastrada? <br /> <Link to="/login">Faça Login</Link></p>

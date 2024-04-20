@@ -16,7 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { useToast } from "@/components/ui/use-toast"
-import { useLoaderData, useFetcher, useParams } from 'react-router-dom'
+import { useLoaderData, useFetcher, useParams, useRouteLoaderData } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
@@ -72,9 +72,8 @@ const DialogButton = () =>{
 
 const SelectButton = (props) =>{
 const { toast } = useToast();
-const materias = useLoaderData();
-
-
+const materias = useRouteLoaderData("homeLoader")
+console.log(materias)
 function toastActive(e){
   props.setMateria(e)
   return toast({
@@ -120,7 +119,7 @@ function MudaConteudoHeader(props){
         <DialogButton>Nova matéria</DialogButton>
         </>
       )
-    }else if(caminhoAtual == '/'){
+    }else if(caminhoAtual == '/home'){
       return (
         <>
         <h3>Bem-Vindo de volta ao SmartStudy</h3>

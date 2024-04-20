@@ -1,21 +1,19 @@
 import style from  "../CSS/listaMateria.module.css"
-import { Form, Link, useLoaderData, useFetcher } from "react-router-dom";
+import { Link, useLoaderData, useFetcher } from "react-router-dom";
 import useMateria from "../customHooks/useMateria";
 import { useToast } from "@/components/ui/use-toast"
 import { useEffect } from "react";
-import { useQuery } from "react-query";
+
 
 const {listMaterias} = useMateria();
 
-const listMateriasQuery = () => ({
+export const listMateriasQuery = () => ({
     queryKey: 'materias',
     queryFn: async () => listMaterias(),
     staleTime: "Infinity",
 
   })
   
-
-
 export const createMateria = (queryClient) =>async ({params,request}) =>{
 
     const {createMateria} = useMateria();
@@ -27,12 +25,12 @@ export const createMateria = (queryClient) =>async ({params,request}) =>{
         let result
         try{
             result = await createMateria(formData.get('nameMateria'))
-            await queryClient.fetchQuery(query)
+            
         }catch(error){
             return error
         }
         
-    
+    await queryClient.fetchQuery(query)
     return result
  
 }
@@ -56,10 +54,7 @@ return result
 
 
 export const LoaderMateria = (queryClient) => async ({params}) =>{
-     
      const query = listMateriasQuery();
-   
-    console.log('Passei no loader')
      return (
         queryClient.getQueryData(query.queryKey) ??
         (await queryClient.fetchQuery(query))

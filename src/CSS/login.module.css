@@ -33,6 +33,10 @@
     background: rgba(95, 72, 236, 0.33);
     border: none;
     margin-top: 1.2rem;
+    color: white;
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding-left: 2.25rem;
 }
 
 .form_login button{
@@ -58,3 +62,10 @@
     color: #5F48EC;
 }
 
+.login_erro {
+
+    font-size: 1.75rem !important;
+    color: red !important;
+    font-weight: 400 !important;
+    margin: 0 !important;
+}

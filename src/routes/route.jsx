@@ -11,6 +11,7 @@ import { authVerification } from '../utils/authVerification';
 import Materia, { createTask, deleteTask, loaderTaskData } from '../Pages/materia';
 import useMateria from '../customHooks/useMateria';
 import { QueryClient } from 'react-query';
+import { listMateriasQuery } from '../Pages/ListaMaterias'
 
 export const queryClient = new QueryClient({
     defaultOptions: {
@@ -21,34 +22,46 @@ export const queryClient = new QueryClient({
     },
   });
 
-async function paternLoader({params, request}){
+async function homeLoader({params, request, ListaMateriasQuery}){
 
   const isLogged = await authVerification()
-  console.log('Patern Loader')
-  if(isLogged){
-    console.log(window.location.pathname)
-    if(window.location.pathname == "/" || window.location.pathname.includes("/materia/")){
-        const {listMaterias} =useMateria();
-        const materias = await listMaterias();
-        return materias
-    }
 
-    return null
+  if(isLogged){
+
+        const query = listMateriasQuery();
+        return (
+            queryClient.getQueryData(query.queryKey) ??
+            (await queryClient.fetchQuery(query))
+          )
   }else{
     return redirect('/login')
   }
 
 }
 
+async function authLoader({params, request}){
+
+    const isLogged = await authVerification()
+    console.log('Auth Loader')
+    if(isLogged){
+      return null
+    }else{
+      return redirect('/login')
+    }
+  
+  }
+
 const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
-        loader: paternLoader,
+        loader:authLoader,
         children: [
             {
-                path: '/',
+                path: '/home',
                 element: <Pomo />,
+                loader: homeLoader,
+                id: 'homeLoader',
             },
             {
                 path: '/agenda',
@@ -63,6 +76,7 @@ const router = createBrowserRouter([
             {
                 path:'/lista-materias/',
                 element:<ListaMaterias/>,
+                id:'listMaterias',
                 loader:LoaderMateria(queryClient),
             },
             {

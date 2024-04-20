@@ -1,6 +1,6 @@
 import React from 'react'
 import style from '../CSS/login.module.css'
-import { Form, Link, redirect } from 'react-router-dom'
+import { Form, Link, redirect, useActionData } from 'react-router-dom'
 import { postLogin } from '../utils/auth'
 import { authVerification } from '../utils/authVerification'
 
@@ -8,7 +8,7 @@ export async function loginLoader({params, request}){
 
   const isLogged = await authVerification()
   if(isLogged){
-    return redirect('/')
+    return redirect('/home')
   }else{
     return null
   }
@@ -20,15 +20,22 @@ export async function loginAction({params,request}){
     
 const formData = await request.formData()
 
-await postLogin(formData.get('email'), formData.get('password'))
+
+try{
+  await postLogin(formData.get('email'), formData.get('password'))
+}catch(err){
+  console.error(err)
+  return "Email ou senha inválido"
+}
 
 
-
-return redirect('/')
+return redirect('/home')
     
 }
 
 export const Login = () => {
+  const possivelLoginErro = useActionData()
+
   return (
     <div className={style.container}>
 
@@ -38,8 +45,10 @@ export const Login = () => {
             <input type="email" name='email' />
             
             <label>Password :</label>
-            <input type="text" name='password' />
-
+            <input type="password" name='password' />
+            {
+              possivelLoginErro ? <p className={style.login_erro}>{possivelLoginErro}</p> : null
+            }
             <button type='submit'>Login</button>
 
             <p>Não possui login? <Link to="/cadastro">Cadastre-se</Link></p>
