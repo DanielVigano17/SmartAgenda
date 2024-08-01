@@ -8,12 +8,13 @@ import { queryClient } from './routes/route.jsx'
 import {
   QueryClientProvider,
 } from 'react-query'
+import Loading from './components/Loading.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
   <QueryClientProvider client={queryClient}>
-    <RouterProvider router={router} />
+    <RouterProvider router={router} fallbackElement={<Loading/>}/>
   </QueryClientProvider>
   </React.StrictMode>,
 )
