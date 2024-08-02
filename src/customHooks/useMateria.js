@@ -16,11 +16,7 @@ const useMateria = ()=>{
           .then(function (response) {
             
       
-            return new Promise((resolve)=>{
-              setTimeout(()=>{
-                resolve(response.data)
-              },3000)
-            })
+            return response.data
           })
           .catch(function (error) {
             
@@ -105,11 +101,31 @@ const useMateria = ()=>{
       
       }
 
+      async function getTotalTempoMateria(materiaId){
+  
+        const userId = await authVerification()
+      
+        const response = await axiosInstance.post(`/getTotalTempoMateria/`, {
+      
+            userId: userId.uid,
+            materiaId:Number(materiaId),
+      
+          })
+          .then(function (response) {
+            return response.data;
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        return response;
+      }
+
     return{
         createMateria,
         deleteMateria,
         listMaterias,
         getLastWeekTime,
+        getTotalTempoMateria
     }
 
 }

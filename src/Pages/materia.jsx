@@ -12,6 +12,7 @@ import {
   } from "@/components/ui/dialog"
 import { useFetchers,useFetcher,useLoaderData, useParams } from "react-router-dom";
 import { Grafico_line } from "../components/Grafico_line";
+import criaHora from "../utils/criaHora";
 
 
 export const createTask = async ({params,request})=>{
@@ -40,23 +41,23 @@ export const deleteTask = async ({params})=>{
         console.error(error)
         return error
     }
-    
-
     return response
 }
 
-export const loaderTaskData = async  ({params})=>{
+export const loaderTaskData = async ({params})=>{
     const {listMaterias} = useMateria();
     const {listTasks} = useTask();
     const {getLastWeekTime} = useMateria();
-    let response = { nameMateria:"", lista:{}, time:{} }
+    let response = { nameMateria: "", lista:{}, time:{}, totalTempo : 0 }
       
     try{
     const materias = await listMaterias();
     response.nameMateria = materias.filter(materia => materia.id == params.materiaId)
+    const {tempoTotal} = materias.find(materia => materia.id == params.materiaId)
+    response.totalTempo = criaHora(tempoTotal,false,true);
     response.lista = await listTasks(params.materiaId);
 
-    response.time = await getLastWeekTime(params.materiaId)
+    response.time = await getLastWeekTime(params.materiaId);
 
     }catch(error){
     return error
@@ -124,7 +125,7 @@ const Materia = () =>{
                         <p>Média semanal</p>
                         <button><img src="/lapis-icon.svg" alt="" /></button>
                     </div>
-                    <h2>7h</h2>
+                    <h2>{loaderData.totalTempo}</h2>
                 </div>
 
                 <div className={style.grafico}>
